@@ -233,8 +233,6 @@ $(document).ready(function() {
 	setDropdownList('#user_add');
 	setDropdownList('#user_update');
 	setDropdownList('#fag_allow');
-	setDropdownList('#member_type');
-	setDatePicker('.datepicker');
 
 	//Set default value
 	var order_by = $('#set_order_by').attr('value');

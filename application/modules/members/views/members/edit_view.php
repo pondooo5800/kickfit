@@ -7,11 +7,11 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card">
-				<div class="card-header card-header-rose card-header-text">
+				<div class="card-header card-header-success card-header-text">
 					<div class="card-icon">
 						<i class="material-icons">edit</i>
 					</div>
-					<h4 class="card-title">แก้ไขข้อมูลลูกค้า</h4>
+					<h4 class="card-title">แก้ไขสมาชิก</h4>
 				</div>
 				<div class="card-body">
 					<form class='form-horizontal' id='formEdit' accept-charset='utf-8'>
@@ -21,12 +21,16 @@
 						<div class="container">
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_user_id">เลขบัตรประจำตัวประชาชน :</label>
+									<label class="control-label" for="member_user_id">รหัสสมาชิก :</label>
 									<div class="form-group has-success">
 										<input type="text" class="form-control" id="member_user_id" name="member_user_id" value="{record_member_user_id}" readonly />
 									</div>
 								</div>
 								<div class="form-group col-md-4 ">
+									<label class="control-label" for="cus_passwd">รหัสผ่าน (อย่างน้อย 6 ตัว) :</label>
+									<div class="form-group has-success">
+										<input type="password" class="form-control " id="cus_passwd" name="cus_passwd" value="{record_cus_passwd}" />
+									</div>
 								</div>
 							</div>
 							<div class="form-row justify-content-around">
@@ -46,56 +50,55 @@
 
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="date_of_birth">วันเกิด :</label>
+									<label class="control-label" for="member_shop">ชื่อร้าน :</label>
 									<div class="form-group has-success">
-										<input type="text" class="form-control datepicker" id="date_of_birth" name="date_of_birth" value="{record_date_of_birth}" />
+										<input type="text" class="form-control" id="member_shop" name="member_shop" value="{record_member_shop}" />
 									</div>
 								</div>
-								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_age">อายุ :</label>
-									<div class="form-group has-success">
-										<input type="text" class="form-control" id="member_age" name="member_age" value="{record_member_age}" maxlength="3" OnKeyPress="return chkNumber(this)"/>
-									</div>
-								</div>
-							</div>
-							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
 									<label class="control-label" for="member_mobile_no">เบอร์โทรศัพท์ :</label>
 									<div class="form-group has-success">
 										<input type="text" class="form-control" id="member_mobile_no" name="member_mobile_no" value="{record_member_mobile_no}" />
 									</div>
 								</div>
-
+							</div>
+							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
 									<label class="control-label" for="member_email_addr">อีเมล :</label>
 									<div class="form-group has-success">
 										<input type="text" class="form-control" id="member_email_addr" name="member_email_addr" value="{record_member_email_addr}" />
 									</div>
 								</div>
+								<div class="form-group col-md-4 ">
+								</div>
 							</div>
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_addr">ที่อยู่ :</label>
+									<label class="control-label" for="member_addr">ที่อยู่ในการจัดส่งสินค้า :</label>
 									<div class="form-group has-success">
 										<textarea class="form-control" id="member_addr" name="member_addr" rows="3">{record_member_addr}</textarea>
 									</div>
 								</div>
 								<div class="form-group col-md-4 ">
+									<label class="control-label" for="member_same">ที่อยู่สำหรับออกใบเสร็จรับเงิน :</label>
+									<div class="form-group has-success">
+										<textarea class="form-control" id="member_same" name="member_same" rows="3">{record_member_same}</textarea>
+									</div>
 								</div>
 							</div>
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_employment">อาชีพ :</label>
+									<label class="control-label" for="member_note">หมายเหตุ (ถ้ามี) :</label>
 									<div class="form-group has-success">
-										<input type="text" class="form-control" id="member_employment" name="member_employment" value="{record_member_employment}"/>
+										<textarea class="form-control" id="member_note" name="member_note" rows="3">{record_member_note}</textarea>
 									</div>
 								</div>
+
 								<div class="form-group col-md-4">
-									<label class="control-label" for="member_type">ประเภท :</label>
-									<select id="member_type" name="member_type" value="{record_member_type}">
-										<option value="">- เลือกประเภท -</option>
-										<option value="th">คนไทย</option>
-										<option value="en">คนต่างชาติ</option>
+									<label class="control-label" for="fag_allow">สถานะ :</label>
+									<select id="fag_allow" name="fag_allow" value="{record_fag_allow}">
+										<option value="allow">ปกติ</option>
+										<option value="block">ระงับการใช้งาน</option>
 									</select>
 								</div>
 							</div>

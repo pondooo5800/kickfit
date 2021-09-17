@@ -82,7 +82,7 @@ if(in_array($_SERVER['HTTP_HOST'], array('localhost:80', 'localhost:8086')))
 }
 $db_host = 'localhost';
 // $db_name = 'shopping';
-$db_name = 'kickfit';
+$db_name = 'yeejub';
 $db_user = 'root';
 $db_pass = '';
 

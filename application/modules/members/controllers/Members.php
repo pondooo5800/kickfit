@@ -16,7 +16,7 @@ class Members extends CRUD_Controller
 	{
 		parent::__construct();
 
-		chkUserPerm();
+		// chkUserPerm();
 
 		$this->per_page = 30;
 		$this->num_links = 6;
@@ -209,24 +209,16 @@ class Members extends CRUD_Controller
 		$this->load->library('form_validation');
 		$frm = $this->form_validation;
 
-		$frm->set_rules('member_user_id', 'เลขบัตรประจำตัวประชาชน', 'trim|required');
-		$frm->set_rules('member_fname', 'ชื่อ', 'trim|required');
-		$frm->set_rules('member_lname', 'นามสกุล', 'trim|required');
-		$frm->set_rules('member_mobile_no', 'เบอร์โทรศัพท์', 'trim|required');
-		$frm->set_rules('date_of_birth', 'วันเกิด', 'trim|required');
-		$frm->set_rules('member_type', 'ประเภท', 'trim|required');
+		$frm->set_rules('product_name', 'ขื่อหมวดหมู่สินค้า', 'trim|required');
+		$frm->set_rules('fag_allow', 'สถานะ', 'trim|required');
 
 		$frm->set_message('required', '- กรุณาใส่ข้อมูล %s');
 		$frm->set_message('is_natural', '- %s ต้องระบุตัวเลขจำนวนเต็ม');
 
 		if ($frm->run() == FALSE) {
 			$message  = '';
-			$message .= form_error('member_user_id');
-			$message .= form_error('member_fname');
-			$message .= form_error('member_lname');
-			$message .= form_error('member_mobile_no');
-			$message .= form_error('date_of_birth');
-			$message .= form_error('member_type');
+			$message .= form_error('product_name');
+			$message .= form_error('fag_allow');
 			return $message;
 		}
 	}
@@ -242,24 +234,24 @@ class Members extends CRUD_Controller
 		$this->load->library('form_validation');
 		$frm = $this->form_validation;
 
-		$frm->set_rules('member_user_id', 'เลขบัตรประจำตัวประชาชน', 'trim|required');
 		$frm->set_rules('member_fname', 'ชื่อ', 'trim|required');
 		$frm->set_rules('member_lname', 'นามสกุล', 'trim|required');
+		$frm->set_rules('member_shop', 'ชื่อร้าน', 'trim|required');
 		$frm->set_rules('member_mobile_no', 'เบอร์โทรศัพท์', 'trim|required');
-		$frm->set_rules('date_of_birth', 'วันเกิด', 'trim|required');
-		$frm->set_rules('member_type', 'ประเภท', 'trim|required');
+		$frm->set_rules('member_addr', 'ที่อยู่ในการจัดส่งสินค้า', 'trim|required');
 
 		$frm->set_message('required', '- กรุณาใส่ข้อมูล %s');
 		$frm->set_message('is_natural', '- %s ต้องระบุตัวเลขจำนวนเต็ม');
 
 		if ($frm->run() == FALSE) {
 			$message  = '';
-			$message .= form_error('member_user_id');
 			$message .= form_error('member_fname');
 			$message .= form_error('member_lname');
+			$message .= form_error('member_shop');
 			$message .= form_error('member_mobile_no');
-			$message .= form_error('date_of_birth');
-			$message .= form_error('member_type');
+			$message .= form_error('member_addr');
+
+
 			return $message;
 		}
 	}
@@ -467,12 +459,16 @@ class Members extends CRUD_Controller
 			$data[$i]['encrypt_member_id'] = $pk1;
 			$data[$i]['record_member_user_id'] = $data[$i]['member_user_id'];
 			$data[$i]['record_fullname'] = $data[$i]['member_fname'] .' '. $data[$i]['member_lname'];
-			$data[$i]['record_member_addr'] = $data[$i]['member_addr'];
 			$data[$i]['record_member_email_addr'] = $data[$i]['member_email_addr'];
-			$data[$i]['date_of_birth'] = setThaiDate($data[$i]['date_of_birth']);
 			$data[$i]['record_member_mobile_no'] = $data[$i]['member_mobile_no'];
-			$data[$i]['record_member_employment'] = $data[$i]['member_employment'];
-			$data[$i]['record_member_type'] = $this->setStatusSubject($data[$i]['member_type']);
+			$data[$i]['record_member_shop'] = $data[$i]['member_shop'];
+
+			if ($data[$i]['fag_allow'] == 'allow') {
+				$data[$i]['preview_status_color'] = 'color:#4caf50';
+			} else if ($data[$i]['block'] == 'block') {
+				$data[$i]['preview_status_color'] = 'color:#ff9800';
+			}
+			$data[$i]['preview_status'] = $this->setStatusSubject($data[$i]['fag_allow']);
 			$data[$i]['preview_fag_allow'] = $this->setFagAllowSubject($data[$i]['fag_allow']);
 			$data[$i]['datetime_add'] = setThaiDate($data[$i]['datetime_add']);
 			$data[$i]['datetime_update'] = setThaiDate($data[$i]['datetime_update']);
@@ -488,11 +484,14 @@ class Members extends CRUD_Controller
 	{
 		$subject = '';
 		switch ($value) {
-			case 'th':
-				$subject = 'คนไทย';
+			case 'allow':
+				$subject = 'ปกติ';
 				break;
-			case 'en':
-				$subject = 'คนต่างชาติ';
+			case 'block':
+				$subject = 'ระงับการใช้งาน';
+				break;
+			case 'delete':
+				$subject = 'ลบ';
 				break;
 		}
 		return $subject;
@@ -534,12 +533,15 @@ class Members extends CRUD_Controller
 		$this->data['record_member_lname'] =$data['member_lname'];
 		$this->data['record_member_email_addr'] = $data['member_email_addr'];
 		$this->data['record_member_mobile_no'] = $data['member_mobile_no'];
+		$this->data['record_member_shop'] = $data['member_shop'];
 		$this->data['record_member_addr'] = $data['member_addr'];
-		$this->data['record_member_employment'] = $data['member_employment'];
-		$this->data['record_member_age'] = $data['member_age'];
-		$this->data['record_member_type'] = $this->setStatusSubject($data['member_type']);
-		$this->data['record_member_type'] = $data['member_type'];
-		$this->data['record_date_of_birth'] = setThaiDate($data['date_of_birth']);
+		$this->data['record_member_same'] = $data['member_same'];
+		$this->data['record_member_note'] = $data['member_note'];
+		if ($data['fag_allow'] == 'allow') {
+			$this->data['preview_status_color'] = 'color:#4caf50';
+		} else if ($data['fag_allow'] == 'block') {
+			$this->data['preview_status_color'] = 'color:#ff9800';
+		}
 		$this->data['record_user_add'] = $data['user_add'];
 		$this->data['record_user_update'] = $data['user_update'];
 		$this->data['record_user_delete'] = $data['user_delete'];
@@ -547,7 +549,9 @@ class Members extends CRUD_Controller
 		$this->data['record_datetime_update'] = $data['datetime_update'];
 		$this->data['record_datetime_delete'] = $data['datetime_delete'];
 		$this->data['preview_fag_allow'] = $this->setFagAllowSubject($data['fag_allow']);
+		$this->data['preview_status'] = $this->setStatusSubject($data['fag_allow']);
 		$this->data['record_fag_allow'] = $data['fag_allow'];
+
 		$this->data['record_datetime_delete'] = setThaiDate($data['datetime_delete']);
 		$this->data['record_datetime_add'] = setThaiDate($data['datetime_add']);
 		$this->data['record_datetime_update'] = setThaiDate($data['datetime_update']);

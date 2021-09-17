@@ -2,9 +2,6 @@
       <nav class="navbar navbar-expand-lg navbar-dark navbar-absolute fixed-top ">
       	<div class="container-fluid">
       		<div class="navbar-wrapper">
-			  <span class="nav-profile-name" style="font-weight:bold;font-size: 16px;">ระบบบริหารจัดการยิมมวยออกกําลังกาย</span>
-			  <span class="nav-profile-name" style="font-weight:bold;font-size: 14px;">Kick Fit Boxing Club</span>
-
       		</div>
       		<button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
       			<span class="sr-only">Toggle navigation</span>
