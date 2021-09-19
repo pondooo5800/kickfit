@@ -6,7 +6,7 @@
 					<div class="card-icon">
 						<i class="material-icons">event</i>
 					</div>
-					<h4 class="card-title">ตั้งค่า โปรโมชั่นสินค้า</h4>
+					<h4 class="card-title">ข้อมูลแพ็กเกจ</h4>
 				</div>
 				<div class="card-body">
 					<form class="form-horizontal" name="formSearch" method="post" action="{page_url}/search">
@@ -22,7 +22,7 @@
 									<div class="col-md-2">
 										<div class="form-group has-warning bmd-form-group" id="search">
 											<select class="select2-search" name="search_field" class="span2">
-												<option value="promotion_name">ชื่อ โปรโมชั่นสินค้า</option>
+												<option value="promotion_name">ชื่อ แพ็กเกจ</option>
 											</select>
 										</div>
 									</div>
@@ -43,8 +43,8 @@
 										<div class="form-group bmd-form-group">
 											<select class="select2-search" id="set_order_by" class="span2" value="{order_by}">
 												<option value="">- จัดเรียงตาม -</option>
-												<option value="promotion_name|asc">โปรโมชั่นสินค้า ก - ฮ</option>
-												<option value="promotion_name|desc">โปรโมชั่นสินค้า ฮ - ก</option>
+												<option value="promotion_name|asc">แพ็กเกจ ก - ฮ</option>
+												<option value="promotion_name|desc">แพ็กเกจ ฮ - ก</option>
 											</select>
 										</div>
 									</div>
@@ -65,18 +65,22 @@
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
-									<th class="text-center">ชื่อ โปรโมชั่นสินค้า</th>
-									<th class="text-center">ประเภท</th>
-									<th class="text-center">สถานะ</th>
+									<th class="text-center">ชื่อ แพ็กเกจ</th>
+									<th class="text-center">ราคา</th>
+									<th class="text-center">ส่วนลดโปรโมชั่น</th>
+									<th class="text-center">วันที่เริ่มต้น</th>
+									<th class="text-center">วันที่สิ้นสุด</th>
 									<th class="text-center" style="width:200px">เครื่องมือ</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr parser-repeat="[data_list]" id="row_{record_number}">
 									<td style="text-align:center;">{record_number}</td>
-									<td style="text-align:left;">{promotion_name}</td>
-									<td style="text-align:center;">{preview_promotion_type}</td>
-									<td style="text-align:center;">{preview_fag_allow}</td>
+									<td style="text-align:left;">{record_promotion_name}</td>
+									<td style="text-align:center;">{record_promotion_price}</td>
+									<td style="text-align:center;">{record_promotion_discount}</td>
+									<td style="text-align:center;">{date_of_promotion_start}</td>
+									<td style="text-align:center;">{date_of_promotion_end}</td>
 									<td class="td-actions text-center">
 										<a href="{page_url}/preview/{url_encrypt_id}" class="my-tooltip btn btn-info btn-md" data-toggle="tooltip" title="แสดงข้อมูลรายละเอียด">
 											<i class="material-icons">list</i>

@@ -17,36 +17,40 @@
 					<div class="card-icon">
 						<i class="material-icons">list</i>
 					</div>
-					<h4 class="card-title">รายละเอียด โปรโมชั่นสินค้า</h4>
+					<h4 class="card-title">รายละเอียด แพ็คเกจ</h4>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table table-bordered table-hover preview">
 							<tbody>
 								<tr>
-									<td class="text-right fit"><b>ชื่อ โปรโมชั่นสินค้า :</b></td>
+									<td class="text-right fit"><b>ชื่อ แพ็คเกจ :</b></td>
 									<td>{record_promotion_name}</td>
 								</tr>
 								<tr>
-									<td class="text-right fit"><b>ประเภท :</b></td>
-									<td>{preview_promotion_type}</td>
-								</tr>
-								<tr>
-									<td class="text-right fit"><b>รายละเอียด :</b></td>
+									<td class="text-right fit"><b>รายละเอียดแพ็คเกจ :</b></td>
 									<td>{record_promotion_detail}</td>
 								</tr>
 								<tr>
-									<td class="text-right fit"><b>สถานะ :</b></td>
-									<td>{preview_fag_allow}</td>
+									<td class="text-right fit"><b>ราคา :</b></td>
+									<td>{record_promotion_price}</td>
+								</tr>
+								<tr>
+									<td class="text-right fit"><b>ส่วนลดโปรโมชั่น :</b></td>
+									<td>{record_promotion_discount}</td>
 								</tr>
 
 								<tr>
-									<td class="text-right fit"><b>วันเวลาที่เพิ่ม :</b></td>
-									<td>{record_datetime_add}</td>
+									<td class="text-right fit"><b>วันที่เริ่มต้น :</b></td>
+									<td>{date_of_promotion_start}</td>
 								</tr>
 								<tr>
-									<td class="text-right fit"><b>รูปภาพ โปรโมชั่นสินค้า :</b></td>
-									<td>{preview_promotions_img1}</td>
+									<td class="text-right fit"><b>วันที่สิ้นสุด :</b></td>
+									<td>{date_of_promotion_end}</td>
+								</tr>
+								<tr>
+									<td class="text-right fit"><b>วันเวลาที่เพิ่ม :</b></td>
+									<td>{record_datetime_add}</td>
 								</tr>
 							</tbody>
 						</table>

@@ -45,9 +45,11 @@ class Promotions_model extends MY_Model
 		$data = array(
 			'promotion_name' => $post['promotion_name'],
 			'promotion_detail' => $post['promotion_detail'],
-			'promotion_type' => $post['promotion_type'],
-			'promotion_img1' => $post['promotion_img1'],
-			'fag_allow' => $post['fag_allow'],
+			'promotion_discount' => $post['promotion_discount'],
+			'promotion_price' => $post['promotion_price'],
+			'date_of_promotion_start' => setDateToStandard($post['date_of_promotion_start']),
+			'date_of_promotion_end' => setDateToStandard($post['date_of_promotion_end']),
+			'fag_allow' => 'allow',
 		);
 		return $this->add_record($data);
 	}
@@ -133,13 +135,12 @@ class Promotions_model extends MY_Model
 		$data = array(
 			'promotion_name' => $post['promotion_name'],
 			'promotion_detail' => $post['promotion_detail'],
-			'promotion_type' => $post['promotion_type'],
-			'fag_allow' => $post['fag_allow'],
+			'promotion_discount' => $post['promotion_discount'],
+			'promotion_price' => $post['promotion_price'],
+			'date_of_promotion_start' => setDateToStandard($post['date_of_promotion_start']),
+			'date_of_promotion_end' => setDateToStandard($post['date_of_promotion_end']),
+			'fag_allow' => 'allow',
 		);
-
-		if (isset($post['promotion_img1'])) {
-			$data['promotion_img1'] = $post['promotion_img1'];
-		}
 
 
 		$promotion_id = checkEncryptData($post['encrypt_promotion_id']);

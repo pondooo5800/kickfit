@@ -12,7 +12,7 @@
 					<div class="card-icon">
 						<i class="material-icons">edit</i>
 					</div>
-					<h4 class="card-title">แก้ไข โปรโมชั่นสินค้า</h4>
+					<h4 class="card-title">แก้ไข แพ็คเกจ</h4>
 				</div>
 				<div class="card-body">
 				<form class='form-horizontal' id='formEdit' accept-charset='utf-8'>
@@ -20,51 +20,57 @@
 						<input type="hidden" name="submit_case" value="edit" />
 						<input type="hidden" name="data_id" value="{data_id}" />
 						<div class="container">
-							<div class="form-row justify-content-around">
+						<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="promotion_name">ชื่อ โปรโมชั่นสินค้า :</label>
+									<label class="control-label" for="promotion_name">ชื่อ แพ็คเกจ :</label>
 									<div class="form-group has-info">
 										<input type="text" class="form-control" id="promotion_name" name="promotion_name" value="{record_promotion_name}" />
 									</div>
 								</div>
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="promotion_type">ประเภท :</label>
-									<select id="promotion_type" name="promotion_type" value="{record_promotion_type}">
-										<option value="">- เลือก ประเภท -</option>
-										<option value="0">โปรโมชั่น ประกาศ</option>
-										<option value="1">โปรโมชั่น สินค้า</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-row justify-content-around">
-							<div class="form-group col-md-4 ">
-									<label class="control-label" for="promotion_detail">รายละเอียด :</label>
+									<label class="control-label" for="promotion_detail">รายละเอียดแพ็คเกจ :</label>
 									<div class="form-group has-info">
 										<textarea class="form-control" id="promotion_detail" name="promotion_detail" rows="3">{record_promotion_detail}</textarea>
 									</div>
-								</div>								<div class="form-group col-md-4 ">
-									<label class="control-label" for="fag_allow">สถานะ :</label>
-									<select id="fag_allow" name="fag_allow" value="{record_fag_allow}">
-										<option value="">- เลือก สถานะ -</option>
-										<option value="allow">เผยแพร่</option>
-										<option value="block">ไม่เผยแพร่</option>
-									</select>
 								</div>
 							</div>
+
 							<div class="form-row justify-content-around">
-								<div class="col-sm-12 col-md-10">
-									<label class="control-label" for="promotion_img1">รูปภาพ โปรโมชั่นสินค้า :</label>
-									<div class="upload-box">
-										<div class="hold input-group">
-											<span class="btn-file"> คลิกเพื่อแนบไฟล์
-												<input type="file" id="promotion_img1" name="promotion_img1" data-elem-preview="promotion_img1_preview" data-elem-label="promotion_img1_label" />
-											</span><input class="form-control" id="promotion_img1_label" name="promotion_img1_label" placeholder=" กรุณาเลือกไฟล์ที่ต้องการอัพโหลด" readonly="readonly" value="{record_promotion_img1_label}" />
-										</div>
+								<div class="form-group col-md-4 ">
+									<label class="control-label" for="promotion_price">ราคา :</label>
+									<div class="form-group has-info">
+										<input type="text" class="form-control" id="promotion_price" name="promotion_price" value="{record_promotion_price}" OnKeyPress="return chkNumber(this)"/>
 									</div>
-									<br>
-									{preview_promotion_img1}
-									<input type="hidden" id="promotion_img1_old_path" name="promotion_img1_old_path" value="" />
-									<div style="clear:both"></div>
+								</div>
+								<div class="form-group col-md-4 ">
+									<label class="control-label" for="promotion_discount">ส่วนลดโปรโมชั่น :</label>
+									<select id="promotion_discount" name="promotion_discount" value="{promotion_discount}">
+										<option value="">- เลือก ส่วนลดโปรโมชั่น -</option>
+										<option value="10">10%</option>
+										<option value="20">20%</option>
+										<option value="30">30%</option>
+										<option value="40">40%</option>
+										<option value="50">50%</option>
+										<option value="60">60%</option>
+										<option value="70">70%</option>
+										<option value="80">80%</option>
+										<option value="90">90%</option>
+									</select>
+								</div>
+
+							</div>
+							<div class="form-row justify-content-around">
+								<div class="form-group col-md-4 ">
+									<label class="control-label" for="date_of_promotion_start">วันที่เริ่มต้น :</label>
+									<div class="form-group has-success">
+										<input type="text" class="form-control datepicker" id="date_of_promotion_start" name="date_of_promotion_start" value="{date_of_promotion_start}" />
+									</div>
+								</div>
+								<div class="form-group col-md-4 ">
+									<label class="control-label" for="date_of_promotion_end">วันที่สิ้นสุด :</label>
+									<div class="form-group has-success">
+										<input type="text" class="form-control datepicker" id="date_of_promotion_end" name="date_of_promotion_end" value="{date_of_promotion_end}" />
+									</div>
 								</div>
 							</div>
 						</div>

@@ -217,9 +217,6 @@ class Promotions extends CRUD_Controller
 	{
 		$this->data['count_image'] = 1;
 		$this->data['data_id'] = 0;
-		$this->data['preview_promotion_img1'] = '<div id="div_preview_promotion_img1" class="py-3 div_file_preview" style="clear:both"><img id="promotion_img1_preview" style="object-fit:contain ; width: 100%; height: 320px;"/></div>';
-		$this->data['record_promotion_img1_label'] = '';
-
 		$this->render_view('promotions/promotions/add_view');
 	}
 
@@ -233,21 +230,12 @@ class Promotions extends CRUD_Controller
 	{
 		$this->load->library('form_validation');
 		$frm = $this->form_validation;
-
-		//file upload
-		$check_file = FALSE;
-		if ($this->input->post('promotion_img1_label') == '') {
-			$check_file = TRUE;
-		}
-		if ($check_file == TRUE) {
-			if (empty($_FILES['promotion_img1']['name'])) {
-				$frm->set_rules('promotion_img1', 'รูปภาพ', 'trim|required');
-			}
-		}
-
-		$frm->set_rules('promotion_name', 'ชื่อ โปรโมชั่นสินค้า', 'trim|required');
-		$frm->set_rules('promotion_type', 'ประเภท', 'trim|required');
-		$frm->set_rules('fag_allow', 'สถานะ', 'trim|required');
+		$frm->set_rules('promotion_name', 'ชื่อ แพ็คเกจ', 'trim|required');
+		$frm->set_rules('promotion_detail', 'รายละเอียดแพ็คเกจ', 'trim|required');
+		$frm->set_rules('promotion_discount', 'ส่วนลดโปรโมชั่น', 'trim|required');
+		$frm->set_rules('promotion_price', 'ราคา', 'trim|required');
+		$frm->set_rules('date_of_promotion_start', 'วันที่เริ่มต้น', 'trim|required');
+		$frm->set_rules('date_of_promotion_end', 'วันที่สิ้นสุด', 'trim|required');
 
 		$frm->set_message('required', '- กรุณาใส่ข้อมูล %s');
 		$frm->set_message('is_natural', '- %s ต้องระบุตัวเลขจำนวนเต็ม');
@@ -255,9 +243,11 @@ class Promotions extends CRUD_Controller
 		if ($frm->run() == FALSE) {
 			$message  = '';
 			$message .= form_error('promotion_name');
-			$message .= form_error('promotion_type');
-			$message .= form_error('fag_allow');
-			$message .= form_error('promotion_img1');
+			$message .= form_error('promotion_detail');
+			$message .= form_error('promotion_discount');
+			$message .= form_error('promotion_price');
+			$message .= form_error('date_of_promotion_start');
+			$message .= form_error('date_of_promotion_end');
 			return $message;
 		}
 	}
@@ -272,19 +262,12 @@ class Promotions extends CRUD_Controller
 	{
 		$this->load->library('form_validation');
 		$frm = $this->form_validation;
-		//file upload
-		$check_file = FALSE;
-		if ($this->input->post('promotion_img1_label') == '') {
-			$check_file = TRUE;
-		}
-		if ($check_file == TRUE) {
-			if (empty($_FILES['promotion_img1']['name'])) {
-				$frm->set_rules('promotion_img1', 'รูปภาพ', 'trim|required');
-			}
-		}
-
-		$frm->set_rules('promotion_name', 'ชื่อ promotion', 'trim|required');
-		$frm->set_rules('fag_allow', 'สถานะ', 'trim|required');
+		$frm->set_rules('promotion_name', 'ชื่อ แพ็คเกจ', 'trim|required');
+		$frm->set_rules('promotion_detail', 'รายละเอียดแพ็คเกจ', 'trim|required');
+		$frm->set_rules('promotion_discount', 'ส่วนลดโปรโมชั่น', 'trim|required');
+		$frm->set_rules('promotion_price', 'ราคา', 'trim|required');
+		$frm->set_rules('date_of_promotion_start', 'วันที่เริ่มต้น', 'trim|required');
+		$frm->set_rules('date_of_promotion_end', 'วันที่สิ้นสุด', 'trim|required');
 
 		$frm->set_message('required', '- กรุณาใส่ข้อมูล %s');
 		$frm->set_message('is_natural', '- %s ต้องระบุตัวเลขจำนวนเต็ม');
@@ -292,8 +275,11 @@ class Promotions extends CRUD_Controller
 		if ($frm->run() == FALSE) {
 			$message  = '';
 			$message .= form_error('promotion_name');
-			$message .= form_error('fag_allow');
-			$message .= form_error('promotion_img1');
+			$message .= form_error('promotion_detail');
+			$message .= form_error('promotion_discount');
+			$message .= form_error('promotion_price');
+			$message .= form_error('date_of_promotion_start');
+			$message .= form_error('date_of_promotion_end');
 			return $message;
 		}
 	}
@@ -347,7 +333,7 @@ class Promotions extends CRUD_Controller
 			$this->FileUpload->create($encrypt_name, $orig_name);
 			$file_path = $path . '/' . $encrypt_name; //ไม่ต้องใช้ Path เต็ม
 			// $thumb_width = 400;
-            // $thumb_height = 300;
+			// $thumb_height = 300;
 			// // Image resize config
 			// $config['image_library']    = 'gd2';
 			// $config['source_image']     = $file_path;
@@ -385,7 +371,6 @@ class Promotions extends CRUD_Controller
 	 */
 	public function save()
 	{
-
 		$message = '';
 		$message .= $this->formValidate();
 		if ($message != '') {
@@ -397,33 +382,23 @@ class Promotions extends CRUD_Controller
 		} else {
 
 			$post = $this->input->post(NULL, TRUE);
-
-			$upload_error = 0;
-			$upload_error_msg = '';
-			$arr = $this->uploadFile('promotion_img1');
-			if ($arr['result'] == TRUE) {
-				$post['promotion_img1'] = $arr['file_path'];
-			} else {
-				$upload_error++;
-				$upload_error_msg .= '<br/>' . print_r($arr['error'], TRUE);
-			}
-			// die(print_r($arr = $this->uploadFile('promotion_img3')));
-
 			$encrypt_id = '';
-			if ($upload_error == 0) {
+
+			$id = $this->Promotions->create($post);
+			if ($id != '') {
 				$success = TRUE;
-				$id = $this->Promotions->create($post);
 				$encrypt_id = encrypt($id);
 				$message = '<strong>บันทึกข้อมูลเรียบร้อย</strong>';
 			} else {
 				$success = FALSE;
-				$message = $upload_error_msg;
+				$message = 'Error : ' . $this->Promotions->error_message;
 			}
 
 			$json = json_encode(array(
 				'is_successful' => $success,
 				'encrypt_id' =>  $encrypt_id,
-				'message' => $message
+				'message' => $message,
+				'id' => $id
 			));
 			echo $json;
 		}
@@ -474,7 +449,6 @@ class Promotions extends CRUD_Controller
 	public function update()
 	{
 		$message = '';
-		$message .= $this->formValidateWithFile();
 		$message .= $this->formValidateUpdate();
 		$post = $this->input->post(NULL, TRUE);
 		// die(print_r($post));
@@ -586,15 +560,17 @@ class Promotions extends CRUD_Controller
 				$pk1 = encrypt($pk1);
 			}
 			$data[$i]['encrypt_promotion_id'] = $pk1;
-			$data[$i]['preview_promotion_type'] = $this->setPromotionTypeSubject($data[$i]['promotion_type']);
+			$data[$i]['record_promotion_name'] = $data[$i]['promotion_name'];
+			$data[$i]['record_promotion_detail'] = $data[$i]['promotion_detail'];
+			$data[$i]['record_promotion_discount'] = $data[$i]['promotion_discount'] ."%";
+			$data[$i]['record_promotion_price'] = number_format($data[$i]['promotion_price'], 2);
+
 			$data[$i]['preview_fag_allow'] = $this->setFagAllowSubject($data[$i]['fag_allow']);
+			$data[$i]['date_of_promotion_start'] = setThaiDate($data[$i]['date_of_promotion_start']);
+			$data[$i]['date_of_promotion_end'] = setThaiDate($data[$i]['date_of_promotion_end']);
 			$data[$i]['datetime_add'] = setThaiDate($data[$i]['datetime_add']);
 			$data[$i]['datetime_update'] = setThaiDate($data[$i]['datetime_update']);
 			$data[$i]['datetime_delete'] = setThaiDate($data[$i]['datetime_delete']);
-			$arr = explode('/', $data[$i]['promotion_img1']);
-			$encrypt_file_name = end($arr);
-			$filename = $this->Promotions->getValueOf('tb_uploads_filename', 'filename', "encrypt_name = '$encrypt_file_name'", $this->db);
-			$data[$i]['preview_promotion_img1'] = setAttachLink('promotion_img1', $data[$i]['promotion_img1'], $filename);
 		}
 		return $data;
 	}
@@ -618,19 +594,6 @@ class Promotions extends CRUD_Controller
 		}
 		return $subject;
 	}
-	private function setPromotionTypeSubject($value)
-	{
-		$subject = '';
-		switch ($value) {
-			case '0':
-				$subject = 'โปรโมชั่น ประกาศ';
-				break;
-			case '1':
-				$subject = 'โปรโมชั่น สินค้า';
-				break;
-		}
-		return $subject;
-	}
 
 	/**
 	 * SET array data list
@@ -648,18 +611,6 @@ class Promotions extends CRUD_Controller
 
 		$this->data['record_promotion_id'] = $data['promotion_id'];
 
-		$this->load->model('common_model');
-
-		$arr = explode('/', $data['promotion_img1']);
-		$encrypt_name = end($arr);
-		$filename = $this->Promotions->getValueOf('tb_uploads_filename', 'filename', "encrypt_name = '$encrypt_name'", $this->db);
-		$this->data['record_promotion_img1_label'] = $filename;
-		$this->data['preview_promotion_img1'] = setAttachPreview('promotion_img1', $data['promotion_img1'], $filename);
-
-		// print_r();
-		// die();
-
-
 		$this->data['record_promotion_name'] = $data['promotion_name'];
 		$this->data['record_promotion_detail'] = $data['promotion_detail'];
 		$this->data['record_user_delete'] = $data['user_delete'];
@@ -668,17 +619,18 @@ class Promotions extends CRUD_Controller
 		$this->data['record_datetime_add'] = $data['datetime_add'];
 		$this->data['record_user_update'] = $data['user_update'];
 		$this->data['record_datetime_update'] = $data['datetime_update'];
-		$this->data['preview_promotion_type'] = $this->setPromotionTypeSubject($data['promotion_type']);
-		$this->data['record_promotion_type'] = $data['promotion_type'];
 		$this->data['preview_fag_allow'] = $this->setFagAllowSubject($data['fag_allow']);
 		$this->data['record_fag_allow'] = $data['fag_allow'];
+		$this->data['record_promotion_discount'] = $data['promotion_discount'] ."%";
+		$this->data['promotion_discount'] = $data['promotion_discount'];
+		$this->data['record_promotion_price'] = number_format($data['promotion_price'], 2);
+
+		$this->data['date_of_promotion_start'] = setThaiDate($data['date_of_promotion_start']);
+		$this->data['date_of_promotion_end'] = setThaiDate($data['date_of_promotion_end']);
 
 		$this->data['record_datetime_delete'] = setThaiDate($data['datetime_delete']);
 		$this->data['record_datetime_add'] = setThaiDate($data['datetime_add']);
 		$this->data['record_datetime_update'] = setThaiDate($data['datetime_update']);
-
-
-		$this->data['preview_promotions_img1'] = setAttachProductPreview('promotion_img1', $data['promotion_img1'], $filename);
 	}
 }
 /*---------------------------- END Controller Class --------------------------------*/
