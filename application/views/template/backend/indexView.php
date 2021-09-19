@@ -4,9 +4,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>YeeJub | ร้านหยี่จั๊บทุกอย่าง 20 บาท</title>
+	<title>Kick Fit Boxing Club</title>
 
-	<link rel="shortcut icon" type="image/png" href="{base_url}assets/themes/frontend/assets/img/favicon_io/favicon.png" />
+	<link rel="shortcut icon" type="image/png" href="{base_url}assets/images/favicon.png" />
 
 	<!--     Fonts and icons     -->
 	<link rel="stylesheet" href="{base_url}assets/themes/material/assets/css/material-font.css">

@@ -1,12 +1,12 @@
-<div class="sidebar" data-color="azure" data-background-color="white" data-image="{base_url}assets/themes/material/assets/img/sidebar-3.jpg">
+<div class="sidebar" data-color="rose" data-background-color="white" data-image="{base_url}assets/themes/material/assets/img/sidebar-3.jpg">
 	<div class="logo">
-		<a href="{site_url}dashboard_user" class="simple-text logo-normal">
-			<img src="{base_url}/assets/themes/frontend/assets/img/icon/logo_yeejub.png" alt="logo" style="width:100%">&emsp;
+		<a class="simple-text logo-normal">
+			<img src="{base_url}/assets/images/logo.png" alt="logo" style="width:50%">&emsp;
 		</a>
 	</div>
 	<div class="sidebar-wrapper">
 		<ul class="nav">
-			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'orders') { ?>active<?php } ?>">
+			<!-- <li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'orders') { ?>active<?php } ?>">
 				<a class="nav-link" href="{site_url}orders/orders">
 					<i class="material-icons">shopping_cart</i>
 					<p>รายการสั่งซื้อสินค้า</p>
@@ -17,11 +17,11 @@
 					<i class="material-icons">category</i>
 					<p>สินค้า</p>
 				</a>
-			</li>
+			</li> -->
 			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'members') { ?>active<?php } ?>">
 				<a class="nav-link" href="{site_url}members/members">
 					<i class="material-icons">person</i>
-					<p>สมาชิก</p>
+					<p>ข้อมูลลูกค้า</p>
 				</a>
 			</li>
 			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'products_types') { ?>active<?php } ?>">

@@ -78,7 +78,7 @@ class User_login extends CRUD_Controller
                 $data['message'] = '';
                 $data['is_successful'] = true;
 
-                $data['redirect_url'] = 'orders/orders';
+                $data['redirect_url'] = 'members/members';
 
 
 				if($url = $this->session->userdata('after_login_redirect')){

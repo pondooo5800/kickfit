@@ -2,11 +2,11 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card">
-				<div class="card-header card-header-info card-header-icon">
+				<div class="card-header card-header-rose card-header-icon">
 					<div class="card-icon">
 						<i class="material-icons">library_books</i>
 					</div>
-					<h4 class="card-title">สมาชิก</h4>
+					<h4 class="card-title">ข้อมูลลูกค้า</h4>
 				</div>
 				<div class="card-body">
 					<form class="form-horizontal" name="formSearch" method="post" action="{page_url}/search">
@@ -22,12 +22,12 @@
 									<div class="col-md-2">
 										<div class="form-group has-warning bmd-form-group" id="search">
 											<select class="select2-search" name="search_field" class="span2">
-												<option value="member_user_id">รหัสสมาชิก</option>
-												<option value="member_fname">ชื่อสมาขิก</option>
+												<option value="member_user_id">เลขบัตรประจำตัวประชาชน</option>
+												<option value="member_fname">ชื่อ</option>
 											</select>
 										</div>
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div class="form-group has-info bmd-form-group">
 											<input type="text" class="form-control col" id="txtSearch" name="txtSearch" value="{txt_search}">
 										</div>
@@ -40,22 +40,22 @@
 											</button>
 										</div>
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div class="form-group bmd-form-group">
 											<select class="select2-search" id="set_order_by" class="span2" value="{order_by}">
 												<option value="">- จัดเรียงตาม -</option>
-												<option value="member_fname|asc">ชื่อสินค้า ก - ฮ</option>
-												<option value="member_fname|desc">ชื่อสินค้า ฮ - ก</option>
+												<option value="member_fname|asc">ชื่อ ก - ฮ</option>
+												<option value="member_fname|desc">ชื่อ ฮ - ก</option>
 											</select>
 										</div>
 									</div>
-									<!-- <div class="col-md-2">
+									<div class="col-md-2">
 										<div class="form-group bmd-form-group">
 											<a href="{page_url}/add" class="btn btn-success" data-toggle="tooltip" title="เพิ่มข้อมูลใหม่" id="btn-search">
 												<i class="fa fa-plus-square"></i></span>&nbsp;&nbsp;เพิ่มรายการ
 											</a>
 										</div>
-									</div> -->
+									</div>
 								</div>
 							</div>
 						</div>
@@ -66,11 +66,14 @@
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
-									<th class="text-center">รหัสสมาชิก</th>
+									<th class="text-center">เลขบัตรประจำตัวประชาชน</th>
 									<th class="text-center">ชื่อ สกุล</th>
+									<th class="text-center">วันเดือนปีเกิด</th>
+									<th class="text-center">ที่อยู่</th>
+									<th class="text-center">อีเมล</th>
+									<th class="text-center">อาชีพ</th>
 									<th class="text-center">เบอร์โทรศัพท์</th>
-									<th class="text-center">ชื่อร้าน</th>
-									<th class="text-center">สถานะ</th>
+									<th class="text-center">ประเภท</th>
 									<th class="text-center" style="width:200px">เครื่องมือ</th>
 								</tr>
 							</thead>
@@ -79,9 +82,12 @@
 									<td style="text-align:center;">{record_number}</td>
 									<td style="text-align:left;">{record_member_user_id}</td>
 									<td style="text-align:left;">{record_fullname}</td>
+									<td style="text-align:left;">{date_of_birth}</td>
+									<td style="text-align:left;">{record_member_addr}</td>
+									<td style="text-align:left;">{record_member_email_addr}</td>
+									<td style="text-align:left;">{record_member_employment}</td>
 									<td style="text-align:left;">{record_member_mobile_no}</td>
-									<td style="text-align:left;">{record_member_shop}</td>
-									<td style="text-align:center; {preview_status_color}">{preview_status}</td>
+									<td style="text-align:center;">{record_member_type}</td>
 									<td class="td-actions text-center">
 										<a href="{page_url}/preview/{url_encrypt_id}" class="my-tooltip btn btn-info btn-md" data-toggle="tooltip" title="แสดงข้อมูลรายละเอียด">
 											<i class="material-icons">list</i>

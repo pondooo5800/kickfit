@@ -13,18 +13,18 @@
 		<div class="col-md-12">
 
 			<div class="card">
-				<div class="card-header card-header-success card-header-text">
+				<div class="card-header card-header-rose card-header-text">
 					<div class="card-icon">
 						<i class="material-icons">list</i>
 					</div>
-					<h4 class="card-title">รายละเอียดสมาชิก</h4>
+					<h4 class="card-title">รายละเอียดข้อมูลลูกค้า</h4>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table table-bordered table-hover preview">
 							<tbody>
 								<tr>
-									<td class="text-right fit"><b>รหัสสมาชิก :</b></td>
+									<td class="text-right fit"><b>เลขบัตรประจำตัวประชาชน :</b></td>
 									<td>{record_member_user_id}</td>
 								</tr>
 								<tr>
@@ -36,33 +36,32 @@
 									<td>{record_member_lname}</td>
 								</tr>
 								<tr>
-									<td class="text-right fit"><b>เบอร์โทรศัพท์ :</b></td>
-									<td>{record_member_mobile_no}</td>
+									<td class="text-right fit"><b>วันเดือนปีเกิด :</b></td>
+									<td>{record_date_of_birth}</td>
+								</tr>
+								<tr>
+									<td class="text-right fit"><b>อายุ :</b></td>
+									<td>{record_member_age}</td>
+								</tr>
+								<tr>
+									<td class="text-right fit"><b>ที่อยู่ :</b></td>
+									<td>{record_member_addr}</td>
 								</tr>
 								<tr>
 									<td class="text-right fit"><b>อีเมล :</b></td>
 									<td>{record_member_email_addr}</td>
 								</tr>
 								<tr>
-									<td class="text-right fit"><b>ชื่อร้าน :</b></td>
-									<td>{record_member_shop}</td>
-								</tr>
-
-								<tr>
-									<td class="text-right fit"><b>ที่อยู่ในการจัดส่งสินค้า :</b></td>
-									<td>{record_member_addr}</td>
+									<td class="text-right fit"><b>อาชีพ :</b></td>
+									<td>{record_member_employment}</td>
 								</tr>
 								<tr>
-									<td class="text-right fit"><b>หมายเหตุ (ถ้ามี) :</b></td>
-									<td>{record_member_note}</td>
+									<td class="text-right fit"><b>เบอร์โทรศัพท์ :</b></td>
+									<td>{record_member_mobile_no}</td>
 								</tr>
 								<tr>
-									<td class="text-right fit"><b>สถานะ :</b></td>
-									<td style="{preview_status_color}">{preview_status}</td>
-								</tr>
-								<tr>
-									<td class="text-right fit"><b>วันเวลาที่สมัคร :</b></td>
-									<td>{record_datetime_add}</td>
+									<td class="text-right fit"><b>ประเภท :</b></td>
+									<td>{record_member_type}</td>
 								</tr>
 							</tbody>
 						</table>

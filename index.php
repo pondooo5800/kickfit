@@ -1,7 +1,4 @@
 <?php
-date_default_timezone_set('Asia/Bangkok');
-
-$localhost = array('https://www.ocean-bluewave.com/');
 /**
  * CodeIgniter
  *
@@ -56,15 +53,7 @@ $localhost = array('https://www.ocean-bluewave.com/');
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-if(isset($_SERVER['CI_ENV'])){
-	define('ENVIRONMENT', $_SERVER['CI_ENV']);
-}else{
-	if(!in_array($_SERVER['SERVER_NAME'], $localhost)){
-		define('ENVIRONMENT', 'production');
-	}else{
-		define('ENVIRONMENT', 'development');
-	}
-}
+	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
 /*
  *---------------------------------------------------------------
