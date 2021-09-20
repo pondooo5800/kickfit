@@ -2,10 +2,10 @@
 if (!defined('BASEPATH'))  exit('No direct script access allowed');
 
 /**
- * Products_units_model Class
+ * Trainers_model Class
  * @date 2019-12-05
  */
-class Products_units_model extends MY_Model
+class Trainers_model extends MY_Model
 {
 
 	private $my_table;
@@ -17,7 +17,7 @@ class Products_units_model extends MY_Model
 	public function __construct()
 	{
 		parent::__construct();
-		$this->my_table = 'tb_products_units';
+		$this->my_table = 'tb_admin';
 		$this->set_table_name($this->my_table);
 		$this->order_field = '';
 		$this->order_sort = '';
@@ -26,15 +26,15 @@ class Products_units_model extends MY_Model
 
 	public function exists($data)
 	{
-		$product_unit_id = checkEncryptData($data['product_unit_id']);
-		$this->set_where("$this->my_table.product_unit_id = $product_unit_id");
+		$user_id = checkEncryptData($data['user_id']);
+		$this->set_where("$this->my_table.user_id = $user_id");
 		return $this->count_record();
 	}
 
 
 	public function load($id)
 	{
-		$this->set_where("$this->my_table.product_unit_id = $id");
+		$this->set_where("$this->my_table.user_id = $id");
 		return $this->load_record();
 	}
 
@@ -42,8 +42,18 @@ class Products_units_model extends MY_Model
 	public function create($post)
 	{
 		$data = array(
-			'product_unit_name' => $post['product_unit_name'],
-			'fag_allow' => $post['fag_allow'],
+			'username' => $post['username'],
+			'password' => $post['password'],
+			'fname' => $post['fname'],
+			'lname' => $post['lname'],
+			'fullname' => $post['fname'] .' '.$post['lname'],
+			'addr' => $post['addr'],
+			'email_addr' => $post['email_addr'],
+			'age' => $post['age'],
+			'tel' => $post['tel'],
+			'user_level' => 'trainer',
+			'date_of_birth' => setDateToStandard($post['date_of_birth']),
+			'fag_allow' => 'allow',
 		);
 		return $this->add_record($data);
 	}
@@ -61,7 +71,7 @@ class Products_units_model extends MY_Model
 		$value 	= trim($value);
 
 		$where	= '';
-		$order_by	= 'product_unit_id DESC ';
+		$order_by	= 'user_id DESC ';
 		if ($this->order_field != '') {
 			$order_field = $this->order_field;
 			$order_sort = $this->order_sort;
@@ -71,7 +81,7 @@ class Products_units_model extends MY_Model
 		if ($search_field != '' && $value != '') {
 			$search_method_field = "$this->my_table.$search_field";
 			$search_method_value = '';
-			if ($search_field == 'product_unit_name') {
+			if ($search_field == 'fname') {
 				$search_method_value = "LIKE '%$value%'";
 			}
 			$where	.= ($where != '' ? ' AND ' : '') . " $search_method_field $search_method_value ";
@@ -80,6 +90,8 @@ class Products_units_model extends MY_Model
 			}
 		}
 		$total_row = $this->count_record();
+
+
 		$search_row = $total_row;
 		if ($where != '') {
 			$this->set_where($where);
@@ -107,20 +119,29 @@ class Products_units_model extends MY_Model
 	public function update($post)
 	{
 		$data = array(
-			'product_unit_name' => $post['product_unit_name'],
-			'fag_allow' => $post['fag_allow']
+			'username' => $post['username'],
+			'password' => $post['password'],
+			'fname' => $post['fname'],
+			'lname' => $post['lname'],
+			'fullname' => $post['fname'] .' '.$post['lname'],
+			'addr' => $post['addr'],
+			'email_addr' => $post['email_addr'],
+			'age' => $post['age'],
+			'tel' => $post['tel'],
+			'user_level' => 'trainer',
+			'date_of_birth' => setDateToStandard($post['date_of_birth']),
+			'fag_allow' => 'allow',
 		);
 
-		$product_unit_id = checkEncryptData($post['encrypt_product_unit_id']);
-		$this->set_where("$this->my_table.product_unit_id = $product_unit_id");
+		$user_id = checkEncryptData($post['encrypt_user_id']);
+		$this->set_where("$this->my_table.user_id = $user_id");
 		return $this->update_record($data);
 	}
 
-
 	public function delete($post)
 	{
-		$product_unit_id = checkEncryptData($post['encrypt_product_unit_id']);
-		$this->set_where("$this->my_table.product_unit_id = $product_unit_id");
+		$user_id = checkEncryptData($post['encrypt_user_id']);
+		$this->set_where("$this->my_table.user_id = $user_id");
 		return $this->delete_record();
 	}
 }

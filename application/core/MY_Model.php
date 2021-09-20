@@ -69,9 +69,10 @@ class MY_Model extends CI_Model
     		$where = " and {$this->_table_name}.food_source='เมนูร้านค้า'";
     	}
 
-    	if($this->_table_name=='users_drug' ||$this->_table_name=='users_food_time' ||$this->_table_name=='self_food_menu' || $this->_table_name=='users_result_exam_chemical' || $this->_table_name=='users_result_exam_food_allergy') {
-    		$where = " and {$this->_table_name}.user_id=".$this->session->userdata('user_id');
+    	if($this->_table_name=='tb_admin') {
+    		$where = " and {$this->_table_name}.user_level='trainer'";
     	}
+
 
     	if($query = $this->db->where($this->_table_name.".fag_allow!='delete' {$where} ")->get($this->_table_name)){
     		$num = $query->num_rows();
@@ -99,8 +100,8 @@ class MY_Model extends CI_Model
     		$where = " and {$this->_table_name}.food_source='เมนูร้านค้า'";
     	}
 
-    	if($this->_table_name=='users_drug' ||$this->_table_name=='users_food_time' ||$this->_table_name=='self_food_menu' || $this->_table_name=='users_result_exam_chemical' || $this->_table_name=='users_result_exam_food_allergy') {
-    		$where = " and {$this->_table_name}.user_id=".$this->session->userdata('user_id');
+    	if($this->_table_name=='tb_admin') {
+    		$where = " and {$this->_table_name}.user_level='trainer'";
     	}
 
 		$this->db->from($this->_table_name);

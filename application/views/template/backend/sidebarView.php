@@ -24,7 +24,20 @@
 					<p>ข้อมูลลูกค้า</p>
 				</a>
 			</li>
-			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'products_types') { ?>active<?php } ?>">
+			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'promotions') { ?>active<?php } ?>">
+				<a class="nav-link" href="{site_url}promotions/promotions">
+					<i class="material-icons">event</i>
+					<p>ข้อมูลแพ็กเกจ</p>
+				</a>
+			</li>
+			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'trainers') { ?>active<?php } ?>">
+				<a class="nav-link" href="{site_url}trainers/trainers">
+					<i class="material-icons">person</i>
+					<p>ข้อมูลเทรนเนอร์</p>
+				</a>
+			</li>
+
+			<!-- <li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'products_types') { ?>active<?php } ?>">
 				<a class="nav-link" href="{site_url}products_types/products_types">
 					<i class="material-icons">library_books</i>
 					<p>ตั้งค่าหมวดหมู่สินค้า</p>
@@ -41,17 +54,11 @@
 					<i class="material-icons">bubble_chart</i>
 					<p>ตั้งค่าแบรนด์สินค้า</p>
 				</a>
-			</li>
-			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'promotions') { ?>active<?php } ?>">
-				<a class="nav-link" href="{site_url}promotions/promotions">
-					<i class="material-icons">event</i>
-					<p>ข้อมูลแพ็กเกจ</p>
-				</a>
-			</li>
+			</li> -->
 			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'settings_admin') { ?>active<?php } ?>">
 				<a class="nav-link" href="{site_url}settings_admin/settings_admin/edit/<?php echo $this->session->userdata('encrypt_user_id'); ?>">
 					<i class="material-icons">settings</i>
-					<p>แก้ไขข้อมูลเว็บไซต์</p>
+					<p>แก้ไขข้อมูลส่วนตัว</p>
 				</a>
 			</li>
 			<li class="nav-item ">

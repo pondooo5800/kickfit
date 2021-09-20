@@ -7,11 +7,11 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card">
-				<div class="card-header card-header-success card-header-text">
+				<div class="card-header card-header-rose card-header-text">
 					<div class="card-icon">
 						<i class="material-icons">edit</i>
 					</div>
-					<h4 class="card-title">แก้ไขข้อมูลเว็บไซต์</h4>
+					<h4 class="card-title">แก้ไขข้อมูลเทรนเนอร์</h4>
 				</div>
 				<div class="card-body">
 					<form class='form-horizontal' id='formEdit' accept-charset='utf-8'>
@@ -19,20 +19,6 @@
 						<input type="hidden" name="submit_case" value="edit" />
 						<input type="hidden" name="data_id" value="{data_id}" />
 						<div class="container">
-							<div class="form-row justify-content-around">
-								<div class="form-group col-md-4">
-									<label class="control-label" for="username">Username :</label>
-									<div class="form-group has-info">
-										<input type="text" class="form-control form-control-lg" name="username" id="username" value="{record_username}" readonly>
-									</div>
-								</div>
-								<div class="form-group col-md-4">
-									<label class="control-label" for="password">รหัสผ่านใหม่ :</label>
-									<div class="form-group has-info">
-										<input type="password" class="form-control form-control-lg" name="password" id="password" value="{record_password}" placeholder="Password" required>
-									</div>
-								</div>
-							</div>
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
 									<label class="control-label" for="fname">ชื่อ :</label>
@@ -47,6 +33,7 @@
 									</div>
 								</div>
 							</div>
+
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
 									<label class="control-label" for="date_of_birth">วันเกิด :</label>
@@ -86,6 +73,22 @@
 								<div class="form-group col-md-4 ">
 								</div>
 							</div>
+							<div class="form-row justify-content-around">
+							<div class="form-group col-md-4 ">
+									<label class="control-label" for="username">Username :</label>
+									<div class="form-group has-success">
+									<input type="text" class="form-control" id="username" name="username" value="{record_username}" readonly />
+									</div>
+								</div>
+							<div class="form-group col-md-4 ">
+									<label class="control-label" for="password">Password :</label>
+									<div class="form-group has-success">
+										<input type="password" class="form-control" id="password" name="password" value="{record_password}" />
+									</div>
+								</div>
+
+							</div>
+
 						</div>
 						<br>
 

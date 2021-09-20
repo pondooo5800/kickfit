@@ -140,13 +140,13 @@ class Settings_admin extends CRUD_Controller
 	public function update()
 	{
 		$message = '';
-		$message .= $this->formValidateUpdate();
+		// $message .= $this->formValidateUpdate();
 		$post = $this->input->post(NULL, TRUE);
-		$password = strlen($post['password']);
-		if ($password < 6) {
-			$ok = FALSE;
-			$message = "รหัสผ่านต้องมากกว่า 6 ตัวอักษร";
-		}
+		// $password = strlen($post['password']);
+		// if ($password < 6) {
+		// 	$ok = FALSE;
+		// 	$message = "รหัสผ่านต้องมากกว่า 6 ตัวอักษร";
+		// }
 
 		$error_pk_id = $this->checkRecordKey($post);
 		if ($error_pk_id != '') {
@@ -208,16 +208,15 @@ class Settings_admin extends CRUD_Controller
 		}
 		$this->data['encrypt_user_id'] = $pk1;
 		$this->data['record_user_id'] = $data['user_id'];
-		$this->data['record_username'] = $data['username'];
 		$this->data['record_password'] = $data['password'];
-		$this->data['record_contact_name'] = $data['contact_name'];
-		$this->data['record_contact_addr'] = $data['contact_addr'];
-		$this->data['record_contact_tel'] = $data['contact_tel'];
-		$this->data['record_contact_email'] = $data['contact_email'];
-		$this->data['record_contact_facebook'] = $data['contact_facebook'];
-		$this->data['record_contact_line'] = $data['contact_line'];
-		$this->data['record_contact_facebook_link'] = $data['contact_facebook_link'];
-		$this->data['record_contact_line_link'] = $data['contact_line_link'];
+		$this->data['record_username'] =  $data['username'];
+		$this->data['record_fname'] =$data['fname'];
+		$this->data['record_lname'] =$data['lname'];
+		$this->data['record_email_addr'] = $data['email_addr'];
+		$this->data['record_tel'] = $data['tel'];
+		$this->data['record_addr'] = $data['addr'];
+		$this->data['record_age'] = $data['age'];
+		$this->data['record_date_of_birth'] = setThaiDate($data['date_of_birth']);
 		$this->data['record_user_add'] = $data['user_add'];
 		$this->data['record_user_update'] = $data['user_update'];
 		$this->data['record_user_delete'] = $data['user_delete'];

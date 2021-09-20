@@ -42,15 +42,18 @@ class Settings_admin_model extends MY_Model
 	public function update($post)
 	{
 		$data = array(
+			'username' => $post['username'],
 			'password' => $post['password'],
-			'contact_name' => $post['contact_name'],
-			'contact_addr' => $post['contact_addr'],
-			'contact_tel' => $post['contact_tel'],
-			'contact_email' => $post['contact_email'],
-			'contact_facebook' => $post['contact_facebook'],
-			'contact_line' => $post['contact_line'],
-			'contact_facebook_link' => $post['contact_facebook_link'],
-			'contact_line_link' => $post['contact_line_link'],
+			'fname' => $post['fname'],
+			'lname' => $post['lname'],
+			'fullname' => $post['fname'] .' '.$post['lname'],
+			'addr' => $post['addr'],
+			'email_addr' => $post['email_addr'],
+			'age' => $post['age'],
+			'tel' => $post['tel'],
+			'user_level' => 'admin',
+			'date_of_birth' => setDateToStandard($post['date_of_birth']),
+			'fag_allow' => 'allow',
 		);
 
 		$user_id = checkEncryptData($post['encrypt_user_id']);
