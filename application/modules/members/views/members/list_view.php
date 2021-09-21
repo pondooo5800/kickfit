@@ -83,7 +83,7 @@
 									<td style="text-align:left;">{record_member_mobile_no}</td>
 									<td style="text-align:center;">{record_member_pro}</td>
 									<td class="td-actions text-center">
-										<a href="{site_url}cart/orderPDF/{id}" target="_blank" class="my-tooltip btn btn-success  btn-md" data-toggle="tooltip" title="แสดงข้อมูลรายละเอียด">
+										<a href="{page_url}/billPDF/{record_number}" target="_blank" class="my-tooltip btn btn-success  btn-md" data-toggle="tooltip" title="แสดงข้อมูลรายละเอียด">
 											<i class="material-icons">picture_as_pdf</i>
 										</a>
 										<a href="{page_url}/preview/{url_encrypt_id}" class="my-tooltip btn btn-info btn-md" data-toggle="tooltip" title="แสดงข้อมูลรายละเอียด">

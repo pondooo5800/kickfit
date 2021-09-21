@@ -58,6 +58,19 @@ class Members_model extends MY_Model
 		return $this->add_record($data);
 	}
 
+    public function get_PDF($id){
+        $this->db->select('tb_members.*,tb_promotions.promotion_name,tb_promotions.promotion_discount,tb_promotions.promotion_price');
+        $this->db->from('tb_members');
+		$this->db->join('tb_promotions', "tb_members.member_pro = tb_promotions.promotion_id", 'left');
+		$this->db->where('tb_members.member_id ', $id);
+		$this->db->where('tb_members.fag_allow != "delete"');
+        $query = $this->db->get();
+        $result = $query->row_array();
+		// 		print_r($this->db->last_query());
+		// die();
+
+        return !empty($result)?$result:false;
+    }
 
 	/**
 	 * List all data

@@ -454,6 +454,48 @@ class Members extends CRUD_Controller
 		}
 	}
 
+	public function billPDF($billID)
+	{
+	  $mpdf = new \Mpdf\Mpdf([
+		'default_font_size' => 9,
+		'default_font' => 'sarabun'
+	  ]);
+	  $defaultConfig = (new Mpdf\Config\ConfigVariables())->getDefaults();
+	  $fontDirs = $defaultConfig['fontDir'];
+
+	  $defaultFontConfig = (new Mpdf\Config\FontVariables())->getDefaults();
+	  $fontData = $defaultFontConfig['fontdata'];
+
+	  $mpdf = new \Mpdf\Mpdf([
+		'fontDir' => array_merge($fontDirs, [
+		  __DIR__ . '/tmp',
+		]),
+		'fontdata' => $fontData + [
+		  'sarabun' => [
+			'R' => 'THSarabunNew.ttf',
+			'I' => 'THSarabunNew Italic.ttf',
+			'B' => 'THSarabunNew Bold.ttf',
+			'BI' => 'THSarabunNew BoldItalic.ttf',
+		  ]
+		],
+
+		'default_font' => 'sarabun'
+	  ]);
+	  $bill['bill'] = $this->Members->get_PDF($billID);
+	  $html = $this->load->view('pdf_view', array(
+		'bill'  =>  $bill['bill'],
+	  ), true);
+	//   echo '<pre>';
+	//   print_r($bill);
+
+	//   echo '</pre>';
+
+	//   die();
+
+	  $mpdf->WriteHTML($html);
+	  $file_name = 'ใบเสร็จ.pdf';
+	  $mpdf->Output($file_name, 'I');
+	}
 
 	/**
 	 * SET array data list
