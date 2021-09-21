@@ -49,7 +49,7 @@ class Settings_admin_model extends MY_Model
 			'fullname' => $post['fname'] .' '.$post['lname'],
 			'addr' => $post['addr'],
 			'email_addr' => $post['email_addr'],
-			'age' => $post['age'],
+			// 'age' => $post['age'],
 			'tel' => $post['tel'],
 			'user_level' => 'admin',
 			'date_of_birth' => setDateToStandard($post['date_of_birth']),

@@ -67,7 +67,6 @@
 									<th class="text-center">#</th>
 									<th class="text-center">ชื่อ สกุล</th>
 									<th class="text-center">วันเดือนปีเกิด</th>
-									<th class="text-center">อายุ</th>
 									<th class="text-center">ที่อยู่</th>
 									<th class="text-center">อีเมล</th>
 									<th class="text-center">เบอร์โทรศัพท์</th>
@@ -80,7 +79,6 @@
 									<td style="text-align:center;">{record_number}</td>
 									<td style="text-align:center;">{record_fullname}</td>
 									<td style="text-align:left;">{date_of_birth}</td>
-									<td style="text-align:left;">{record_age}</td>
 									<td style="text-align:left;">{record_addr}</td>
 									<td style="text-align:left;">{record_email_addr}</td>
 									<td style="text-align:left;">{record_tel}</td>

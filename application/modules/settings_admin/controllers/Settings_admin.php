@@ -215,7 +215,7 @@ class Settings_admin extends CRUD_Controller
 		$this->data['record_email_addr'] = $data['email_addr'];
 		$this->data['record_tel'] = $data['tel'];
 		$this->data['record_addr'] = $data['addr'];
-		$this->data['record_age'] = $data['age'];
+		// $this->data['record_age'] = $data['age'];
 		$this->data['record_date_of_birth'] = setThaiDate($data['date_of_birth']);
 		$this->data['record_user_add'] = $data['user_add'];
 		$this->data['record_user_update'] = $data['user_update'];

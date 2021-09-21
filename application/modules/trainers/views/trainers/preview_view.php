@@ -35,10 +35,10 @@
 									<td class="text-right fit"><b>วันเดือนปีเกิด :</b></td>
 									<td>{record_date_of_birth}</td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<td class="text-right fit"><b>อายุ :</b></td>
 									<td>{record_age}</td>
-								</tr>
+								</tr> -->
 								<tr>
 									<td class="text-right fit"><b>ที่อยู่ :</b></td>
 									<td>{record_addr}</td>

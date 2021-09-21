@@ -435,7 +435,7 @@ class Trainers extends CRUD_Controller
 			$data[$i]['record_user_id'] = $data[$i]['user_id'];
 			$data[$i]['record_fullname'] = $data[$i]['fname'] .' '. $data[$i]['lname'];
 			$data[$i]['record_username'] = $data[$i]['username'];
-			$data[$i]['record_age'] = $data[$i]['age'];
+			// $data[$i]['record_age'] = $data[$i]['age'];
 			$data[$i]['record_addr'] = $data[$i]['addr'];
 			$data[$i]['record_email_addr'] = $data[$i]['email_addr'];
 			$data[$i]['date_of_birth'] = setThaiDate($data[$i]['date_of_birth']);
@@ -501,7 +501,7 @@ class Trainers extends CRUD_Controller
 		$this->data['record_email_addr'] = $data['email_addr'];
 		$this->data['record_tel'] = $data['tel'];
 		$this->data['record_addr'] = $data['addr'];
-		$this->data['record_age'] = $data['age'];
+		// $this->data['record_age'] = $data['age'];
 		$this->data['record_date_of_birth'] = setThaiDate($data['date_of_birth']);
 		$this->data['record_user_add'] = $data['user_add'];
 		$this->data['record_user_update'] = $data['user_update'];
