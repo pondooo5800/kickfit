@@ -17,19 +17,23 @@
 					<div class="card-icon">
 						<i class="material-icons">list</i>
 					</div>
-					<h4 class="card-title">รายละเอียด แพ็คเกจ</h4>
+					<h4 class="card-title">รายละเอียด แพ็กเกจ</h4>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table table-bordered table-hover preview">
 							<tbody>
 								<tr>
-									<td class="text-right fit"><b>ชื่อ แพ็คเกจ :</b></td>
+									<td class="text-right fit"><b>ชื่อ แพ็กเกจ :</b></td>
 									<td>{record_promotion_name}</td>
 								</tr>
 								<tr>
-									<td class="text-right fit"><b>รายละเอียดแพ็คเกจ :</b></td>
+									<td class="text-right fit"><b>รายละเอียดแพ็กเกจ :</b></td>
 									<td>{record_promotion_detail}</td>
+								</tr>
+								<tr>
+									<td class="text-right fit"><b>ประเภทรายเดือน/ครั้ง :</b></td>
+									<td>{record_promotion_type}</td>
 								</tr>
 								<tr>
 									<td class="text-right fit"><b>ราคา :</b></td>

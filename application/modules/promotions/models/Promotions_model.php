@@ -44,6 +44,7 @@ class Promotions_model extends MY_Model
 	{
 		$data = array(
 			'promotion_name' => $post['promotion_name'],
+			'promotion_type' => $post['promotion_type'],
 			'promotion_detail' => $post['promotion_detail'],
 			'promotion_discount' => $post['promotion_discount'],
 			'promotion_price' => $post['promotion_price'],
@@ -133,7 +134,8 @@ class Promotions_model extends MY_Model
 	public function update($post)
 	{
 		$data = array(
-			'promotion_name' => $post['promotion_name'],
+			'promotion_name' => $post['promotion_name'] . ' ' .$post['promotion_type'] ,
+			'promotion_type' => $post['promotion_type'],
 			'promotion_detail' => $post['promotion_detail'],
 			'promotion_discount' => $post['promotion_discount'],
 			'promotion_price' => $post['promotion_price'],

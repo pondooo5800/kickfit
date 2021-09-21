@@ -22,6 +22,7 @@ class Members extends CRUD_Controller
 		$this->num_links = 6;
 		$this->uri_segment = 4;
 		$this->load->model('members/Members_model', 'Members');
+		$this->load->model('services/services_model', 'Services');
 		$this->load->model('FileUpload_model', 'FileUpload');
 		$this->data['page_url'] = site_url('members/members');
 		$this->file_allow_type = @array_values($this->file_allow);
@@ -195,6 +196,7 @@ class Members extends CRUD_Controller
 	public function add()
 	{
 		$this->data['data_id'] = 0;
+		$this->data['member_pro_option_list'] = $this->Members->returnOptionList("tb_promotions", "promotion_id", "promotion_name");
 		$this->render_view('members/members/add_view');
 	}
 
@@ -215,6 +217,7 @@ class Members extends CRUD_Controller
 		$frm->set_rules('member_mobile_no', 'เบอร์โทรศัพท์', 'trim|required');
 		$frm->set_rules('date_of_birth', 'วันเกิด', 'trim|required');
 		$frm->set_rules('member_type', 'ประเภท', 'trim|required');
+		$frm->set_rules('member_pro', 'แพ็กเกจ', 'trim|required');
 
 		$frm->set_message('required', '- กรุณาใส่ข้อมูล %s');
 		$frm->set_message('is_natural', '- %s ต้องระบุตัวเลขจำนวนเต็ม');
@@ -227,6 +230,7 @@ class Members extends CRUD_Controller
 			$message .= form_error('member_mobile_no');
 			$message .= form_error('date_of_birth');
 			$message .= form_error('member_type');
+			$message .= form_error('member_pro');
 			return $message;
 		}
 	}
@@ -248,6 +252,7 @@ class Members extends CRUD_Controller
 		$frm->set_rules('member_mobile_no', 'เบอร์โทรศัพท์', 'trim|required');
 		$frm->set_rules('date_of_birth', 'วันเกิด', 'trim|required');
 		$frm->set_rules('member_type', 'ประเภท', 'trim|required');
+		$frm->set_rules('member_pro', 'แพ็จเกจ', 'trim|required');
 
 		$frm->set_message('required', '- กรุณาใส่ข้อมูล %s');
 		$frm->set_message('is_natural', '- %s ต้องระบุตัวเลขจำนวนเต็ม');
@@ -260,6 +265,7 @@ class Members extends CRUD_Controller
 			$message .= form_error('member_mobile_no');
 			$message .= form_error('date_of_birth');
 			$message .= form_error('member_type');
+			$message .= form_error('member_pro');
 			return $message;
 		}
 	}
@@ -284,6 +290,7 @@ class Members extends CRUD_Controller
 
 			$id = $this->Members->create($post);
 			if ($id != '') {
+				$this->Services->create($post);
 				$success = TRUE;
 				$encrypt_id = encrypt($id);
 				$message = '<strong>บันทึกข้อมูลเรียบร้อย</strong>';
@@ -325,7 +332,7 @@ class Members extends CRUD_Controller
 				$this->data['csrf_field'] = insert_csrf_field(true);
 				$this->setPreviewFormat($results);
 				$this->data['data_id'] = $id;
-
+				$this->data['member_pro_option_list'] = $this->Members->returnOptionList("tb_promotions", "promotion_id", "promotion_name");
 				$this->render_view('members/members/edit_view');
 			}
 		}
@@ -472,6 +479,7 @@ class Members extends CRUD_Controller
 			$data[$i]['date_of_birth'] = setThaiDate($data[$i]['date_of_birth']);
 			$data[$i]['record_member_mobile_no'] = $data[$i]['member_mobile_no'];
 			$data[$i]['record_member_employment'] = $data[$i]['member_employment'];
+			$data[$i]['record_member_pro'] = $data[$i]['promotion_name'];
 			$data[$i]['record_member_type'] = $this->setStatusSubject($data[$i]['member_type']);
 			$data[$i]['preview_fag_allow'] = $this->setFagAllowSubject($data[$i]['fag_allow']);
 			$data[$i]['datetime_add'] = setThaiDate($data[$i]['datetime_add']);
@@ -526,9 +534,9 @@ class Members extends CRUD_Controller
 		if ($pk1 != '') {
 			$pk1 = encrypt($pk1);
 		}
+		$this->load->model('common_model');
 		$this->data['encrypt_member_id'] = $pk1;
 		$this->data['record_member_id'] = $data['member_id'];
-		$this->data['record_cus_passwd'] = $data['cus_passwd'];
 		$this->data['record_member_user_id'] =  $data['member_user_id'];
 		$this->data['record_member_fname'] =$data['member_fname'];
 		$this->data['record_member_lname'] =$data['member_lname'];
@@ -537,8 +545,11 @@ class Members extends CRUD_Controller
 		$this->data['record_member_addr'] = $data['member_addr'];
 		$this->data['record_member_employment'] = $data['member_employment'];
 		$this->data['record_member_age'] = $data['member_age'];
-		$this->data['record_member_type'] = $this->setStatusSubject($data['member_type']);
+		$this->data['preview_member_type'] = $this->setStatusSubject($data['member_type']);
 		$this->data['record_member_type'] = $data['member_type'];
+		$rows = rowArray($this->common_model->custom_query("select promotion_name FROM tb_promotions WHERE tb_promotions.fag_allow != 'delete' and tb_promotions.promotion_id =" .$data['member_pro']));
+		$this->data['preview_member_pro'] = $rows['promotion_name'];
+		$this->data['record_member_pro'] = $data['member_pro'];
 		$this->data['record_date_of_birth'] = setThaiDate($data['date_of_birth']);
 		$this->data['record_user_add'] = $data['user_add'];
 		$this->data['record_user_update'] = $data['user_update'];

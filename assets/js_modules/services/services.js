@@ -1,5 +1,5 @@
 var add_array = [];
-var Members = {
+var Services = {
 
 	current_page : 0,
 
@@ -7,7 +7,7 @@ var Members = {
 	loadPreview: function(id){
 		$.ajax({
 			method: 'GET',
-			url: site_url('members/members/preview/'+ id),
+			url: site_url('services/services/preview/'+ id),
 			success: function (results) {
 				$('#divPreview').html(results);
 			},
@@ -22,12 +22,12 @@ var Members = {
 		this.saveEditForm();
 		return false;
 	},
-	validateFormEditMember: function(){
-		this.saveEdit_Member_Form();
+	validateFormEditTrainer: function(){
+		this.saveEdit_Trainer_Form();
 		return false;
 	},
 	saveFormData: function () {
-		var frm_action = site_url('members/members/save');
+		var frm_action = site_url('services/services/save');
 		var obj = $("#btnConfirmSave");
 		if (loading_on(obj) == true) {
 			var fdata = $("#formAdd").serialize();
@@ -42,7 +42,7 @@ var Members = {
 					if (results.is_successful) {
 						alert_type = "success";
 						setTimeout(function(){
-							$(window.location).attr('href', site_url('members/members'));
+							$(window.location).attr('href', site_url('services/services'));
 						}, 1500);
 					} else {
 						alert_type = "danger";
@@ -59,14 +59,14 @@ var Members = {
 		return false;
 	},
 
-	saveEdit_Member_Form: function(){
+	saveEdit_Trainer_Form: function(){
 		$('#editModal').modal('hide');
-		var frm_action = site_url('members/members/update_member');
+		var frm_action = site_url('services/services/update_trainer');
 		var fdata = $('#formEdit').serialize();
 		//fdata += '&edit_remark=' + $('#edit_remark').val();
 		fdata += '&' + csrf_token_name + '=' + $.cookie(csrf_cookie_name);
 		console.log(fdata);
-		var obj = $('#btnSaveEditMember');
+		var obj = $('#btnSaveEditTrainer');
 		loading_on(obj);
 		$.ajax({
 			method: 'POST',
@@ -97,7 +97,7 @@ var Members = {
 	},
 	saveEditForm: function(){
 		$('#editModal').modal('hide');
-		var frm_action = site_url('members/members/update');
+		var frm_action = site_url('services/services/update');
 		var fdata = $('#formEdit').serialize();
 		//fdata += '&edit_remark=' + $('#edit_remark').val();
 		fdata += '&' + csrf_token_name + '=' + $.cookie(csrf_cookie_name);
@@ -113,7 +113,7 @@ var Members = {
 				if(results.is_successful){
 					alert_type = 'success';
 					setTimeout(function(){
-						$(window.location).attr('href', site_url('members/members'));
+						$(window.location).attr('href', site_url('services/services'));
 					}, 1500);
 				}else{
 					alert_type = 'danger';
@@ -134,7 +134,7 @@ var Members = {
 
 
 	confirmDelete: function (pProductId,  irow){
-		$('[name="encrypt_member_id"]').val(pProductId);
+		$('[name="encrypt_user_id"]').val(pProductId);
 
 		$('#xrow').text('['+ irow +']');
 		var my_thead = $('#row_' + irow).closest('table').find('th:not(:first-child):not(:last-child)');
@@ -156,7 +156,7 @@ var Members = {
 
 	// delete by ajax jquery
 	deleteRecord: function(){
-		var frm_action = site_url('members/members/del');
+		var frm_action = site_url('services/services/del');
 		var fdata = $('#formDelete').serialize();
 		fdata += '&' + csrf_token_name + '=' + $.cookie(csrf_cookie_name);
 		var obj = $('#btn_confirm_delete');
@@ -170,7 +170,7 @@ var Members = {
 				if(results.is_successful){
 					alert_type = 'success';
 					setTimeout(function(){
-						$(window.location).attr('href', site_url('members/members/index/'+ this.current_page));
+						$(window.location).attr('href', site_url('services/services/index/'+ this.current_page));
 					}, 500);
 				}else{
 					alert_type = 'danger';
@@ -196,15 +196,15 @@ $(document).ready(function() {
 
 	$('#btnSave').click(function() {
 		$('#addModal').modal('hide');
-		Members.saveFormData();
+		Services.saveFormData();
 		return false;
 	});//click
 
 	$('#btnSaveEdit').click(function() {
-		return Members.validateFormEdit();
+		return Services.validateFormEdit();
 	});//click
-	$('#btnSaveEditMember').click(function() {
-		return Members.validateFormEditMember();
+	$('#btnSaveEditTrainer').click(function() {
+		return Services.validateFormEditTrainer();
 	});//click
 
 	//List view
@@ -213,7 +213,7 @@ $(document).ready(function() {
 	}
 
 	if(typeof param_current_page != 'undefined'){
-		Members.current_page = Math.abs(param_current_page);
+		Services.current_page = Math.abs(param_current_page);
 	}
 
 
@@ -221,20 +221,18 @@ $(document).ready(function() {
 		$('.btn-delete-row').removeClass('active_del');
 		$(this).addClass('active_del');
 		var row_num = $(this).attr('data-row-number');
-		var pProductId = $(this).attr('data-member_id');
+		var pProductId = $(this).attr('data-user_id');
 
-		Members.confirmDelete(pProductId,  row_num);
+		Services.confirmDelete(pProductId,  row_num);
 	});//click
 
 	$(document).on('click','#btn_confirm_delete', function(){
-		Members.deleteRecord();
+		Services.deleteRecord();
 	});
 	setDropdownList('#user_delete');
 	setDropdownList('#user_add');
 	setDropdownList('#user_update');
 	setDropdownList('#fag_allow');
-	setDropdownList('#member_type');
-	setDropdownList('#member_pro');
 	setDatePicker('.datepicker');
 
 	//Set default value

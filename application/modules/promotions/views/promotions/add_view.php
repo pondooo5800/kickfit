@@ -17,7 +17,7 @@
 					<div class="card-icon">
 						<i class="material-icons">note_add</i>
 					</div>
-					<h4 class="card-title">เพิ่มรายการ แพ็คเกจ</h4>
+					<h4 class="card-title">เพิ่มรายการ แพ็กเกจ</h4>
 
 				</div>
 				<div class="card-body ">
@@ -26,13 +26,13 @@
 						<div class="container">
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="promotion_name">ชื่อ แพ็คเกจ :</label>
+									<label class="control-label" for="promotion_name">ชื่อ แพ็กเกจ :</label>
 									<div class="form-group has-info">
 										<input type="text" class="form-control" id="promotion_name" name="promotion_name" value="" />
 									</div>
 								</div>
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="promotion_detail">รายละเอียดแพ็คเกจ :</label>
+									<label class="control-label" for="promotion_detail">รายละเอียดแพ็กเกจ :</label>
 									<div class="form-group has-info">
 										<textarea class="form-control" id="promotion_detail" name="promotion_detail" rows="3"></textarea>
 									</div>
@@ -54,13 +54,22 @@
 										<option value="30">30%</option>
 										<option value="40">40%</option>
 										<option value="50">50%</option>
-										<option value="60">60%</option>
-										<option value="70">70%</option>
-										<option value="80">80%</option>
-										<option value="90">90%</option>
 									</select>
 								</div>
 
+							</div>
+							<div class="form-row justify-content-around">
+								<div class="form-group col-md-4 ">
+								<label class="control-label" for="promotion_type">ประเภท :</label>
+									<select id="promotion_type" name="promotion_type" value="">
+										<option value="">- เลือก ประเภท -</option>
+										<option value="รายเดือน (30 วัน)">รายเดือน (30 วัน)</option>
+										<option value="รายครั้ง (15 ครั้ง">รายครั้ง (15 ครั้ง)</option>
+										<option value="รายครั้ง (10 ครั้ง)">รายครั้ง (10 ครั้ง)</option>
+									</select>
+								</div>
+								<div class="form-group col-md-4 ">
+								</div>
 							</div>
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">

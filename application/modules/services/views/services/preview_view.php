@@ -17,23 +17,19 @@
 					<div class="card-icon">
 						<i class="material-icons">list</i>
 					</div>
-					<h4 class="card-title">รายละเอียดข้อมูลลูกค้า</h4>
+					<h4 class="card-title">รายละเอียดข้อมูลเทรนเนอร์</h4>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table table-bordered table-hover preview">
 							<tbody>
 								<tr>
-									<td class="text-right fit"><b>เลขบัตรประจำตัวประชาชน :</b></td>
-									<td>{record_member_user_id}</td>
-								</tr>
-								<tr>
 									<td class="text-right fit"><b>ชื่อ :</b></td>
-									<td>{record_member_fname}</td>
+									<td>{record_fname}</td>
 								</tr>
 								<tr>
 									<td class="text-right fit"><b>สกุล :</b></td>
-									<td>{record_member_lname}</td>
+									<td>{record_lname}</td>
 								</tr>
 								<tr>
 									<td class="text-right fit"><b>วันเดือนปีเกิด :</b></td>
@@ -41,31 +37,27 @@
 								</tr>
 								<tr>
 									<td class="text-right fit"><b>อายุ :</b></td>
-									<td>{record_member_age}</td>
+									<td>{record_age}</td>
 								</tr>
 								<tr>
 									<td class="text-right fit"><b>ที่อยู่ :</b></td>
-									<td>{record_member_addr}</td>
+									<td>{record_addr}</td>
 								</tr>
 								<tr>
 									<td class="text-right fit"><b>อีเมล :</b></td>
-									<td>{record_member_email_addr}</td>
-								</tr>
-								<tr>
-									<td class="text-right fit"><b>อาชีพ :</b></td>
-									<td>{record_member_employment}</td>
+									<td>{record_email_addr}</td>
 								</tr>
 								<tr>
 									<td class="text-right fit"><b>เบอร์โทรศัพท์ :</b></td>
-									<td>{record_member_mobile_no}</td>
+									<td>{record_tel}</td>
 								</tr>
 								<tr>
-									<td class="text-right fit"><b>ประเภท :</b></td>
-									<td>{preview_member_type}</td>
+									<td class="text-right fit"><b>Username :</b></td>
+									<td>{record_username}</td>
 								</tr>
 								<tr>
-									<td class="text-right fit"><b>ประเภทรายเดือน/ครั้ง :</b></td>
-									<td>{preview_member_pro}</td>
+									<td class="text-right fit"><b>Password :</b></td>
+									<td>{record_password}</td>
 								</tr>
 							</tbody>
 						</table>

@@ -263,6 +263,7 @@ $(document).ready(function() {
 	setDropdownList('#user_update');
 	setDropdownList('#fag_allow');
 	setDropdownList('#promotion_discount');
+	setDropdownList('#promotion_type');
 
 	//Set default value
 	var order_by = $('#set_order_by').attr('value');

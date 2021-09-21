@@ -25,87 +25,73 @@
 						<div class="container">
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_fname">ชื่อ :</label>
+									<label class="control-label" for="fname">ชื่อ :</label>
 									<div class="form-group has-success">
-										<input type="text" class="form-control" id="member_fname" name="member_fname" value="" />
+										<input type="text" class="form-control" id="fname" name="fname" value="" />
 									</div>
 								</div>
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_lname">นามสกุล :</label>
+									<label class="control-label" for="lname">นามสกุล :</label>
 									<div class="form-group has-success">
-										<input type="text" class="form-control " id="member_lname" name="member_lname" value="" />
+										<input type="text" class="form-control " id="lname" name="lname" value="" />
 									</div>
 								</div>
 							</div>
 
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_user_id">เลขบัตรประจำตัวประชาชน :</label>
-									<div class="form-group has-success">
-										<input type="text" class="form-control" id="member_user_id" name="member_user_id" value="" maxlength="13" OnKeyPress="return chkNumber(this)" />
-									</div>
-								</div>
-								<div class="form-group col-md-4 ">
 									<label class="control-label" for="date_of_birth">วันเกิด :</label>
 									<div class="form-group has-success">
 										<input type="text" class="form-control datepicker" id="date_of_birth" name="date_of_birth" value="" />
 									</div>
 								</div>
-							</div>
-							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_age">อายุ :</label>
+									<label class="control-label" for="age">อายุ :</label>
 									<div class="form-group has-success">
-										<input type="text" class="form-control" id="member_age" name="member_age" value="" maxlength="3" OnKeyPress="return chkNumber(this)" />
-									</div>
-								</div>
-								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_mobile_no">เบอร์โทรศัพท์ :</label>
-									<div class="form-group has-success">
-										<input type="text" class="form-control" id="member_mobile_no" name="member_mobile_no" value="" maxlength="10" OnKeyPress="return chkNumber(this)" />
+										<input type="text" class="form-control" id="age" name="age" value="" maxlength="3" OnKeyPress="return chkNumber(this)"/>
 									</div>
 								</div>
 							</div>
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_email_addr">อีเมล :</label>
+									<label class="control-label" for="tel">เบอร์โทรศัพท์ :</label>
 									<div class="form-group has-success">
-										<input type="text" class="form-control" id="member_email_addr" name="member_email_addr" value="" />
+										<input type="text" class="form-control" id="tel" name="tel" value="" maxlength="10" OnKeyPress="return chkNumber(this)"/>
 									</div>
 								</div>
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_employment">อาชีพ :</label>
+									<label class="control-label" for="email_addr">อีเมล :</label>
 									<div class="form-group has-success">
-										<input type="text" class="form-control" id="member_employment" name="member_employment" value="" />
+										<input type="text" class="form-control" id="email_addr" name="email_addr" value="" />
 									</div>
 								</div>
+
 							</div>
 							<div class="form-row justify-content-around">
+							<div class="form-group col-md-4 ">
+									<label class="control-label" for="addr">ที่อยู่ :</label>
+									<div class="form-group has-success">
+										<textarea class="form-control" id="addr" name="addr" rows="3"></textarea>
+									</div>
+								</div>
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_addr">ที่อยู่ :</label>
-									<div class="form-group has-success">
-										<textarea class="form-control" id="member_addr" name="member_addr" rows="3"></textarea>
-									</div>
 								</div>
-								<div class="form-group col-md-4">
-									<label class="control-label" for="member_type">ประเภท :</label>
-									<select id="member_type" name="member_type" value="">
-										<option value="">- เลือกประเภท -</option>
-										<option value="th">คนไทย</option>
-										<option value="en">คนต่างชาติ</option>
-									</select>
-								</div>
+
 							</div>
 							<div class="form-row justify-content-around">
-								<div class="form-group col-md-4">
-									<label class="control-label" for="member_pro">แพ็กเกจ :</label>
-									<select id="member_pro" name="member_pro" value="">
-									<option value="">- เลือกแพ็กเกจ -</option>
-										{member_pro_option_list}
-									</select>
+							<div class="form-group col-md-4 ">
+									<label class="control-label" for="username">Username :</label>
+									<div class="form-group has-success">
+										<input type="text" class="form-control" id="username" name="username" value="" />
+									</div>
 								</div>
-								<div class="form-group col-md-4">
+							<div class="form-group col-md-4 ">
+									<label class="control-label" for="password">Password :</label>
+									<div class="form-group has-success">
+										<input type="password" class="form-control" id="password" name="password" value="" />
+									</div>
 								</div>
+
 							</div>
 						</div>
 						<br>
@@ -152,7 +138,6 @@
 </div>
 <script language="JavaScript">
 	var state = 'add';
-
 	function chkNumber(ele) {
 		var vchar = String.fromCharCode(event.keyCode);
 		if ((vchar < '0' || vchar > '9') && (vchar != '.')) return false;

@@ -6,7 +6,7 @@
 					<div class="card-icon">
 						<i class="material-icons">library_books</i>
 					</div>
-					<h4 class="card-title">ข้อมูลลูกค้า</h4>
+					<h4 class="card-title">ข้อมูลเทรนเนอร์</h4>
 				</div>
 				<div class="card-body">
 					<form class="form-horizontal" name="formSearch" method="post" action="{page_url}/search">
@@ -22,8 +22,7 @@
 									<div class="col-md-2">
 										<div class="form-group has-warning bmd-form-group" id="search">
 											<select class="select2-search" name="search_field" class="span2">
-												<option value="member_user_id">เลขบัตรประจำตัวประชาชน</option>
-												<option value="member_fname">ชื่อ</option>
+												<option value="fname">ชื่อ</option>
 											</select>
 										</div>
 									</div>
@@ -44,8 +43,8 @@
 										<div class="form-group bmd-form-group">
 											<select class="select2-search" id="set_order_by" class="span2" value="{order_by}">
 												<option value="">- จัดเรียงตาม -</option>
-												<option value="member_fname|asc">ชื่อ ก - ฮ</option>
-												<option value="member_fname|desc">ชื่อ ฮ - ก</option>
+												<option value="fname|asc">ชื่อ ก - ฮ</option>
+												<option value="fname|desc">ชื่อ ฮ - ก</option>
 											</select>
 										</div>
 									</div>
@@ -66,22 +65,26 @@
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
-									<th class="text-center">เลขบัตรประจำตัวประชาชน</th>
 									<th class="text-center">ชื่อ สกุล</th>
+									<th class="text-center">วันเดือนปีเกิด</th>
+									<th class="text-center">อายุ</th>
+									<th class="text-center">ที่อยู่</th>
 									<th class="text-center">อีเมล</th>
 									<th class="text-center">เบอร์โทรศัพท์</th>
-									<th class="text-center">แพ็กเกจ</th>
+									<th class="text-center">username</th>
 									<th class="text-center" style="width:200px">เครื่องมือ</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr parser-repeat="[data_list]" id="row_{record_number}">
 									<td style="text-align:center;">{record_number}</td>
-									<td style="text-align:left;">{record_member_user_id}</td>
-									<td style="text-align:left;">{record_fullname}</td>
-									<td style="text-align:left;">{record_member_email_addr}</td>
-									<td style="text-align:left;">{record_member_mobile_no}</td>
-									<td style="text-align:center;">{record_member_pro}</td>
+									<td style="text-align:center;">{record_fullname}</td>
+									<td style="text-align:left;">{date_of_birth}</td>
+									<td style="text-align:left;">{record_age}</td>
+									<td style="text-align:left;">{record_addr}</td>
+									<td style="text-align:left;">{record_email_addr}</td>
+									<td style="text-align:left;">{record_tel}</td>
+									<td style="text-align:left;">{record_username}</td>
 									<td class="td-actions text-center">
 										<a href="{page_url}/preview/{url_encrypt_id}" class="my-tooltip btn btn-info btn-md" data-toggle="tooltip" title="แสดงข้อมูลรายละเอียด">
 											<i class="material-icons">list</i>
@@ -89,7 +92,7 @@
 										<a href="{page_url}/edit/{url_encrypt_id}" class="my-tooltip btn btn-warning " data-toggle="tooltip" title="แก้ไขข้อมูล">
 											<i class="material-icons">edit</i>
 										</a>
-										<a href="javascript:void(0);" class="btn-delete-row my-tooltip btn btn-danger" data-toggle="tooltip" title="ลบรายการนี้" data-member_id="{encrypt_member_id}" data-row-number="{record_number}">
+										<a href="javascript:void(0);" class="btn-delete-row my-tooltip btn btn-danger" data-toggle="tooltip" title="ลบรายการนี้" data-service_id="{encrypt_service_id}" data-row-number="{record_number}">
 											<i class="material-icons">delete_forever</i>
 										</a>
 									</td>
@@ -125,7 +128,7 @@
 			<div class="modal-body">
 				<h4 style="font-weight: bold" class="text-center">* ท่านต้องการลบข้อมูลใช่หรือไม่ *</h4>
 				<form id="formDelete">
-					<input type="hidden" name="encrypt_member_id" />
+					<input type="hidden" name="encrypt_service_id" />
 				</form>
 			</div>
 			<div class="modal-footer" style="justify-content: center;">

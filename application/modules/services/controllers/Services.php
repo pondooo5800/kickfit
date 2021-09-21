@@ -2,19 +2,15 @@
 if (!defined('BASEPATH'))  exit('No direct script access allowed');
 
 /**
- * [ Controller File name : Promotions.php ]
+ * [ Controller File name : Services.php ]
  */
-class Promotions extends CRUD_Controller
+class Services extends CRUD_Controller
 {
 
 	private $per_page;
 	private $another_js;
 	private $another_css;
-	private $upload_store_path;
 	private $file_allow;
-	private $file_allow_type;
-	private $file_allow_mime;
-	private $file_check_name;
 
 	public function __construct()
 	{
@@ -25,32 +21,13 @@ class Promotions extends CRUD_Controller
 		$this->per_page = 30;
 		$this->num_links = 6;
 		$this->uri_segment = 4;
-		$this->load->model('promotions/Promotions_model', 'Promotions');
+		$this->load->model('services/services_model', 'Services');
 		$this->load->model('FileUpload_model', 'FileUpload');
-		$this->data['page_url'] = site_url('promotions/promotions');
-		$this->upload_store_path = './assets/uploads/promotions/';
-		$this->file_allow = array(
-			'application/pdf' => 'pdf',
-			'application/msword' => 'doc',
-			'application/vnd.ms-msword' => 'doc',
-			'application/vnd.ms-excel' => 'xls',
-			'application/powerpoint' => 'ppt',
-			'application/vnd.ms-powerpoint' => 'ppt',
-			'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'docx',
-			'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'xlsx',
-			'application/vnd.openxmlformats-officedocument.presentationml.presentation' => 'pptx',
-			'application/vnd.oasis.opendocument.text' => 'odt',
-			'application/vnd.oasis.opendocument.spreadsheet' => 'ods',
-			'application/vnd.oasis.opendocument.presentation' => 'odp',
-			'image/bmp' => 'bmp',
-			'image/png' => 'png',
-			'image/pjpeg' => 'jpeg',
-			'image/jpeg' => 'jpg'
-		);
+		$this->data['page_url'] = site_url('services/services');
 		$this->file_allow_type = @array_values($this->file_allow);
 		$this->file_allow_mime = @array_keys($this->file_allow);
 		$this->file_check_name = '';
-		$js_url = 'assets/js_modules/promotions/promotions.js?ft=' . filemtime('assets/js_modules/promotions/promotions.js');
+		$js_url = 'assets/js_modules/services/services.js?ft=' . filemtime('assets/js_modules/services/services.js');
 		$this->another_js = '<script src="' . base_url($js_url) . '"></script>';
 	}
 
@@ -73,6 +50,7 @@ class Promotions extends CRUD_Controller
 	 */
 	protected function render_view($path)
 	{
+		chkUserPerm();
 		$this->data['top_navbar'] = $this->parser->parse('template/backend/navbarView', $this->top_navbar_data, TRUE);
 		$this->data['left_sidebar'] = $this->parser->parse('template/backend/sidebarView', $this->left_sidebar_data, TRUE);
 		$this->data['page_content'] = $this->parser->parse_repeat($path, $this->data, TRUE);
@@ -106,8 +84,8 @@ class Promotions extends CRUD_Controller
 	 */
 	public function list_all()
 	{
-		$this->session->unset_userdata($this->Promotions->session_name . '_search_field');
-		$this->session->unset_userdata($this->Promotions->session_name . '_value');
+		$this->session->unset_userdata($this->Services->session_name . '_search_field');
+		$this->session->unset_userdata($this->Services->session_name . '_value');
 
 		$this->search();
 	}
@@ -122,11 +100,11 @@ class Promotions extends CRUD_Controller
 		if (isset($_POST['submit'])) {
 			$search_field =  $this->input->post('search_field', TRUE);
 			$value = $this->input->post('txtSearch', TRUE);
-			$arr = array($this->Promotions->session_name . '_search_field' => $search_field, $this->Promotions->session_name . '_value' => $value);
+			$arr = array($this->Services->session_name . '_search_field' => $search_field, $this->Services->session_name . '_value' => $value);
 			$this->session->set_userdata($arr);
 		} else {
-			$search_field = $this->session->userdata($this->Promotions->session_name . '_search_field');
-			$value = $this->session->userdata($this->Promotions->session_name . '_value');
+			$search_field = $this->session->userdata($this->Services->session_name . '_search_field');
+			$value = $this->session->userdata($this->Services->session_name . '_value');
 		}
 
 		$start_row = $this->uri->segment($this->uri_segment, '0');
@@ -147,16 +125,16 @@ class Promotions extends CRUD_Controller
 					$sort = 'DESC';
 					break;
 			}
-			$this->Promotions->order_field = $field;
-			$this->Promotions->order_sort = $sort;
+			$this->Services->order_field = $field;
+			$this->Services->order_sort = $sort;
 		}
-		$results = $this->Promotions->read($start_row, $per_page);
+		$results = $this->Services->read($start_row, $per_page);
 		$total_row = $results['total_row'];
 		$search_row = $results['search_row'];
 		$list_data = $this->setDataListFormat($results['list_data'], $start_row);
 
 
-		$page_url = site_url('promotions/promotions');
+		$page_url = site_url('services/services');
 		$pagination = $this->create_pagination($page_url . '/search', $search_row);
 		$end_row = $start_row + $per_page;
 		if ($search_row < $per_page) {
@@ -180,7 +158,7 @@ class Promotions extends CRUD_Controller
 		$this->data['pagination_link']	= $pagination;
 		$this->data['csrf_protection_field']	= insert_csrf_field(true);
 
-		$this->render_view('promotions/promotions/list_view');
+		$this->render_view('services/services/list_view');
 	}
 
 	// ------------------------------------------------------------------------
@@ -191,19 +169,20 @@ class Promotions extends CRUD_Controller
 	 */
 	public function preview($encrypt_id = "")
 	{
+
 		$encrypt_id = urldecode($encrypt_id);
 		$id = decrypt($encrypt_id);
 		if ($id == "") {
 			$this->data['message'] = "กรุณาระบุรหัสอ้างอิงที่ต้องการแสดงข้อมูล";
 			$this->render_view('ci_message/warning');
 		} else {
-			$results = $this->Promotions->load($id);
+			$results = $this->Services->load($id);
 			if (empty($results)) {
 				$this->data['message'] = "ไม่พบข้อมูลตามรหัสอ้างอิง <b>$id</b>";
 				$this->render_view('ci_message/danger');
 			} else {
 				$this->setPreviewFormat($results);
-				$this->render_view('promotions/promotions/preview_view');
+				$this->render_view('services/services/preview_view');
 			}
 		}
 	}
@@ -215,9 +194,8 @@ class Promotions extends CRUD_Controller
 	 */
 	public function add()
 	{
-		$this->data['count_image'] = 1;
 		$this->data['data_id'] = 0;
-		$this->render_view('promotions/promotions/add_view');
+		$this->render_view('services/services/add_view');
 	}
 
 	// ------------------------------------------------------------------------
@@ -230,24 +208,25 @@ class Promotions extends CRUD_Controller
 	{
 		$this->load->library('form_validation');
 		$frm = $this->form_validation;
-		$frm->set_rules('promotion_name', 'ชื่อ แพ็กเกจ', 'trim|required');
-		$frm->set_rules('promotion_detail', 'รายละเอียดแพ็กเกจ', 'trim|required');
-		$frm->set_rules('promotion_discount', 'ส่วนลดโปรโมชั่น', 'trim|required');
-		$frm->set_rules('promotion_price', 'ราคา', 'trim|required');
-		$frm->set_rules('date_of_promotion_start', 'วันที่เริ่มต้น', 'trim|required');
-		$frm->set_rules('date_of_promotion_end', 'วันที่สิ้นสุด', 'trim|required');
+
+		$frm->set_rules('fname', 'ชื่อ', 'trim|required');
+		$frm->set_rules('lname', 'นามสกุล', 'trim|required');
+		$frm->set_rules('tel', 'เบอร์โทรศัพท์', 'trim|required');
+		$frm->set_rules('email_addr', 'อีเมล', 'trim|required');
+		$frm->set_rules('username', 'username', 'trim|required');
+		$frm->set_rules('password', 'password', 'trim|required');
 
 		$frm->set_message('required', '- กรุณาใส่ข้อมูล %s');
 		$frm->set_message('is_natural', '- %s ต้องระบุตัวเลขจำนวนเต็ม');
 
 		if ($frm->run() == FALSE) {
 			$message  = '';
-			$message .= form_error('promotion_name');
-			$message .= form_error('promotion_detail');
-			$message .= form_error('promotion_discount');
-			$message .= form_error('promotion_price');
-			$message .= form_error('date_of_promotion_start');
-			$message .= form_error('date_of_promotion_end');
+			$message .= form_error('fname');
+			$message .= form_error('lname');
+			$message .= form_error('tel');
+			$message .= form_error('email_addr');
+			$message .= form_error('username');
+			$message .= form_error('password');
 			return $message;
 		}
 	}
@@ -262,110 +241,30 @@ class Promotions extends CRUD_Controller
 	{
 		$this->load->library('form_validation');
 		$frm = $this->form_validation;
-		$frm->set_rules('promotion_name', 'ชื่อ แพ็กเกจ', 'trim|required');
-		$frm->set_rules('promotion_detail', 'รายละเอียดแพ็กเกจ', 'trim|required');
-		$frm->set_rules('promotion_discount', 'ส่วนลดโปรโมชั่น', 'trim|required');
-		$frm->set_rules('promotion_price', 'ราคา', 'trim|required');
-		$frm->set_rules('date_of_promotion_start', 'วันที่เริ่มต้น', 'trim|required');
-		$frm->set_rules('date_of_promotion_end', 'วันที่สิ้นสุด', 'trim|required');
+
+		$frm->set_rules('fname', 'ชื่อ', 'trim|required');
+		$frm->set_rules('lname', 'นามสกุล', 'trim|required');
+		$frm->set_rules('tel', 'เบอร์โทรศัพท์', 'trim|required');
+		$frm->set_rules('email_addr', 'อีเมล', 'trim|required');
+		$frm->set_rules('username', 'username', 'trim|required');
+		$frm->set_rules('password', 'password', 'trim|required');
+
 
 		$frm->set_message('required', '- กรุณาใส่ข้อมูล %s');
 		$frm->set_message('is_natural', '- %s ต้องระบุตัวเลขจำนวนเต็ม');
 
 		if ($frm->run() == FALSE) {
 			$message  = '';
-			$message .= form_error('promotion_name');
-			$message .= form_error('promotion_detail');
-			$message .= form_error('promotion_discount');
-			$message .= form_error('promotion_price');
-			$message .= form_error('date_of_promotion_start');
-			$message .= form_error('date_of_promotion_end');
+			$message .= form_error('fname');
+			$message .= form_error('lname');
+			$message .= form_error('tel');
+			$message .= form_error('email_addr');
+			$message .= form_error('username');
+			$message .= form_error('password');
 			return $message;
 		}
 	}
 
-	// ------------------------------------------------------------------------
-
-	public function formValidateWithFile()
-	{
-		$this->load->library('form_validation');
-		$frm = $this->form_validation;
-		$message = '';
-		if (!empty($_FILES['promotion_img1']['name'])) {
-			$this->file_check_name = 'promotion_img1';
-			$frm->set_rules('promotion_img1', 'รูปภาพ', 'callback_file_check');
-			if ($frm->run() == FALSE) {
-				$message .= form_error('promotion_img1');
-			}
-		}
-		return $message;
-	}
-	public function file_check()
-	{
-		$allowed_mime_type_arr = $this->file_allow_mime;
-		$mime = get_mime_by_extension($_FILES[$this->file_check_name]['name']);
-		if (isset($_FILES[$this->file_check_name]['name']) && $_FILES[$this->file_check_name]['name'] != '') {
-			if (in_array($mime, $allowed_mime_type_arr)) {
-				return true;
-			} else {
-				$this->form_validation->set_message('file_check', '- กรุณาเลือกประเภทไฟล์  ' . implode(" | ", $this->file_allow_type) . ' เท่านั้นครับ');
-				return false;
-			}
-		} else {
-			$this->form_validation->set_message('file_check', '- กรุณาเลือกไฟล์ %s');
-			return false;
-		}
-	}
-	private function uploadFile($file_name, $dir = '')
-	{
-		if ($dir != '' && substr($dir, 0, 1) != '/') {
-			$dir = '/' . $dir;
-		}
-		$path = $this->upload_store_path . $dir;
-		//เปิดคอนฟิก Auto ชื่อไฟล์ใหม่ด้วย
-		$config['upload_path']          = $path;
-		$config['allowed_types']        = $this->file_allow_type;
-		$config['encrypt_name']		= TRUE;
-		$this->load->library('upload', $config);
-		if ($this->upload->do_upload($file_name)) {
-			$encrypt_name = $this->upload->file_name;
-			$orig_name = $this->upload->orig_name;
-			$this->FileUpload->create($encrypt_name, $orig_name);
-			$file_path = $path . '/' . $encrypt_name; //ไม่ต้องใช้ Path เต็ม
-			// $thumb_width = 400;
-			// $thumb_height = 300;
-			// // Image resize config
-			// $config['image_library']    = 'gd2';
-			// $config['source_image']     = $file_path;
-			// $config['new_image']         = $path;
-			// $config['maintain_ratio']     = FALSE;
-			// $config['width']            = $thumb_width;
-			// $config['height']           = $thumb_height;
-			// // Load and initialize image_lib library
-			// $this->load->library('image_lib', $config);
-			// // Resize image and create thumbnail
-			// $this->image_lib->resize();
-			$data = array(
-				'result' => TRUE,
-				'file_path' => $file_path,
-				'error' => ''
-			);
-		} else {
-			$data = array(
-				'result' => FALSE,
-				'error' => $this->upload->display_errors()
-			);
-		}
-		return $data;
-	}
-	private function removeFile($file_path)
-	{
-		if ($file_path != '') {
-			if (file_exists($file_path)) {
-				unlink($file_path);
-			}
-		}
-	}
 	/**
 	 * Create new record
 	 */
@@ -384,14 +283,14 @@ class Promotions extends CRUD_Controller
 			$post = $this->input->post(NULL, TRUE);
 			$encrypt_id = '';
 
-			$id = $this->Promotions->create($post);
+			$id = $this->Services->create($post);
 			if ($id != '') {
 				$success = TRUE;
 				$encrypt_id = encrypt($id);
 				$message = '<strong>บันทึกข้อมูลเรียบร้อย</strong>';
 			} else {
 				$success = FALSE;
-				$message = 'Error : ' . $this->Promotions->error_message;
+				$message = 'Error : ' . $this->Services->error_message;
 			}
 
 			$json = json_encode(array(
@@ -403,6 +302,7 @@ class Promotions extends CRUD_Controller
 			echo $json;
 		}
 	}
+
 
 	// ------------------------------------------------------------------------
 
@@ -418,7 +318,7 @@ class Promotions extends CRUD_Controller
 			$this->data['message'] = "กรุณาระบุรหัสอ้างอิงที่ต้องการแก้ไขข้อมูล";
 			$this->render_view('ci_message/warning');
 		} else {
-			$results = $this->Promotions->load($id);
+			$results = $this->Services->load($id);
 			if (empty($results)) {
 				$this->data['message'] = "ไม่พบข้อมูลตามรหัสอ้างอิง <b>$id</b>";
 				$this->render_view('ci_message/danger');
@@ -426,7 +326,8 @@ class Promotions extends CRUD_Controller
 				$this->data['csrf_field'] = insert_csrf_field(true);
 				$this->setPreviewFormat($results);
 				$this->data['data_id'] = $id;
-				$this->render_view('promotions/promotions/edit_view');
+
+				$this->render_view('services/services/edit_view');
 			}
 		}
 	}
@@ -435,14 +336,12 @@ class Promotions extends CRUD_Controller
 	public function checkRecordKey($data)
 	{
 		$error = '';
-		$promotion_id = ci_decrypt($data['encrypt_promotion_id']);
-		if ($promotion_id == '') {
-			$error .= '- รหัส promotion_id';
+		$service_id = ci_decrypt($data['encrypt_service_id']);
+		if ($service_id == '') {
+			$error .= '- รหัส service_id';
 		}
 		return $error;
 	}
-
-
 	/**
 	 * Update Record
 	 */
@@ -464,33 +363,13 @@ class Promotions extends CRUD_Controller
 			echo $json;
 		} else {
 
-			$upload_error = 0;
-			$upload_error_msg = '';
-			if (!empty($_FILES['promotion_img1']['name'])) {
-				$arr = $this->uploadFile('promotion_img1');
-				if ($arr['result'] == TRUE) {
-					$post['promotion_img1'] = $arr['file_path'];
-					$this->removeFile($post['promotion_img1_old_path']);
-					$arr = explode('/', $post['promotion_img1_old_path']);
-					$encrypt_name = end($arr);
-					$this->FileUpload->delete($encrypt_name);
-				} else {
-					$upload_error++;
-					$upload_error_msg .= '<br/>' . print_r($arr['error'], TRUE);
-				}
-			}
-			if ($upload_error == 0) {
-				$result = $this->Promotions->update($post);
-				if ($result == false) {
-					$message = $this->Promotions->error_message;
-					$ok = FALSE;
-				} else {
-					$message = '<strong>บันทึกข้อมูลเรียบร้อย</strong>' . $this->Promotions->error_message;
-					$ok = TRUE;
-				}
-			} else {
+			$result = $this->Services->update($post);
+			if ($result == false) {
+				$message = $this->Services->error_message;
 				$ok = FALSE;
-				$message = $upload_error_msg;
+			} else {
+				$message = '<strong>บันทึกข้อมูลเรียบร้อย</strong>' . $this->Services->error_message;
+				$ok = TRUE;
 			}
 			$json = json_encode(array(
 				'is_successful' => $ok,
@@ -506,14 +385,7 @@ class Promotions extends CRUD_Controller
 	 */
 	public function del()
 	{
-		//$delete_remark = $this->input->post('delete_remark', TRUE);
 		$message = '';
-		/*
-		if ($delete_remark == '') {
-			$message .= 'ระบุเหตุผล';
-		}
-		*/
-
 		$post = $this->input->post(NULL, TRUE);
 		$error_pk_id = $this->checkRecordKey($post);
 		if ($error_pk_id != '') {
@@ -526,9 +398,9 @@ class Promotions extends CRUD_Controller
 			));
 			echo $json;
 		} else {
-			$result = $this->Promotions->delete($post);
+			$result = $this->Services->delete($post);
 			if ($result == false) {
-				$message = $this->Promotions->error_message;
+				$message = $this->Services->error_message;
 				$ok = FALSE;
 			} else {
 				$message = '<strong>ลบข้อมูลเรียบร้อย</strong>';
@@ -553,22 +425,21 @@ class Promotions extends CRUD_Controller
 		for ($i = 0; $i < $count; $i++) {
 			$start_row++;
 			$data[$i]['record_number'] = $start_row;
-			$pk1 = $data[$i]['promotion_id'];
+			$pk1 = $data[$i]['service_id'];
 			$data[$i]['url_encrypt_id'] = urlencode(encrypt($pk1));
 
 			if ($pk1 != '') {
 				$pk1 = encrypt($pk1);
 			}
-			$data[$i]['encrypt_promotion_id'] = $pk1;
-			$data[$i]['record_promotion_name'] = $data[$i]['promotion_name'];
-			$data[$i]['record_promotion_type'] = $data[$i]['promotion_type'];
-			$data[$i]['record_promotion_detail'] = $data[$i]['promotion_detail'];
-			$data[$i]['record_promotion_discount'] = $data[$i]['promotion_discount'] ."%";
-			$data[$i]['record_promotion_price'] = number_format($data[$i]['promotion_price'], 2);
-
-			$data[$i]['preview_fag_allow'] = $this->setFagAllowSubject($data[$i]['fag_allow']);
-			$data[$i]['date_of_promotion_start'] = setThaiDate($data[$i]['date_of_promotion_start']);
-			$data[$i]['date_of_promotion_end'] = setThaiDate($data[$i]['date_of_promotion_end']);
+			$data[$i]['encrypt_service_id'] = $pk1;
+			$data[$i]['record_service_id'] = $data[$i]['service_id'];
+			$data[$i]['record_fullname'] = $data[$i]['fname'] .' '. $data[$i]['lname'];
+			$data[$i]['record_username'] = $data[$i]['username'];
+			$data[$i]['record_age'] = $data[$i]['age'];
+			$data[$i]['record_addr'] = $data[$i]['addr'];
+			$data[$i]['record_email_addr'] = $data[$i]['email_addr'];
+			$data[$i]['date_of_birth'] = setThaiDate($data[$i]['date_of_birth']);
+			$data[$i]['record_tel'] = $data[$i]['tel'];
 			$data[$i]['datetime_add'] = setThaiDate($data[$i]['datetime_add']);
 			$data[$i]['datetime_update'] = setThaiDate($data[$i]['datetime_update']);
 			$data[$i]['datetime_delete'] = setThaiDate($data[$i]['datetime_delete']);
@@ -579,6 +450,19 @@ class Promotions extends CRUD_Controller
 	/**
 	 * SET choice subject
 	 */
+	private function setStatusSubject($value)
+	{
+		$subject = '';
+		switch ($value) {
+			case 'th':
+				$subject = 'คนไทย';
+				break;
+			case 'en':
+				$subject = 'คนต่างชาติ';
+				break;
+		}
+		return $subject;
+	}
 	private function setFagAllowSubject($value)
 	{
 		$subject = '';
@@ -595,41 +479,38 @@ class Promotions extends CRUD_Controller
 		}
 		return $subject;
 	}
+
 	/**
 	 * SET array data list
 	 */
 	private function setPreviewFormat($row_data)
 	{
 		$data = $row_data;
-		$pk1 = $data['promotion_id'];
+		$pk1 = $data['service_id'];
 		$this->data['recode_url_encrypt_id'] = urlencode(encrypt($pk1));
 
 		if ($pk1 != '') {
 			$pk1 = encrypt($pk1);
 		}
-		$this->data['encrypt_promotion_id'] = $pk1;
-
-		$this->data['record_promotion_id'] = $data['promotion_id'];
-
-		$this->data['record_promotion_name'] = $data['promotion_name'];
-		$this->data['record_promotion_detail'] = $data['promotion_detail'];
-		$this->data['record_user_delete'] = $data['user_delete'];
-		$this->data['record_datetime_delete'] = $data['datetime_delete'];
+		$this->data['encrypt_service_id'] = $pk1;
+		$this->data['record_service_id'] = $data['service_id'];
+		$this->data['record_password'] = $data['password'];
+		$this->data['record_username'] =  $data['username'];
+		$this->data['record_fname'] =$data['fname'];
+		$this->data['record_lname'] =$data['lname'];
+		$this->data['record_email_addr'] = $data['email_addr'];
+		$this->data['record_tel'] = $data['tel'];
+		$this->data['record_addr'] = $data['addr'];
+		$this->data['record_age'] = $data['age'];
+		$this->data['record_date_of_birth'] = setThaiDate($data['date_of_birth']);
 		$this->data['record_user_add'] = $data['user_add'];
-		$this->data['record_datetime_add'] = $data['datetime_add'];
 		$this->data['record_user_update'] = $data['user_update'];
+		$this->data['record_user_delete'] = $data['user_delete'];
+		$this->data['record_datetime_add'] = $data['datetime_add'];
 		$this->data['record_datetime_update'] = $data['datetime_update'];
+		$this->data['record_datetime_delete'] = $data['datetime_delete'];
 		$this->data['preview_fag_allow'] = $this->setFagAllowSubject($data['fag_allow']);
 		$this->data['record_fag_allow'] = $data['fag_allow'];
-		$this->data['record_promotion_discount'] = $data['promotion_discount'] ."%";
-		$this->data['record_promotion_type'] = $data['promotion_type'];
-		$this->data['promotion_discount'] = $data['promotion_discount'];
-		$this->data['promotion_type'] = $data['promotion_type'];
-		$this->data['record_promotion_price'] = number_format($data['promotion_price'], 2);
-
-		$this->data['date_of_promotion_start'] = setThaiDate($data['date_of_promotion_start']);
-		$this->data['date_of_promotion_end'] = setThaiDate($data['date_of_promotion_end']);
-
 		$this->data['record_datetime_delete'] = setThaiDate($data['datetime_delete']);
 		$this->data['record_datetime_add'] = setThaiDate($data['datetime_add']);
 		$this->data['record_datetime_update'] = setThaiDate($data['datetime_update']);
