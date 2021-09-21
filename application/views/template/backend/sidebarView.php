@@ -30,7 +30,30 @@
 					<p>การเข้าใช้บริการ</p>
 				</a>
 			</li>
-
+			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'reports') { ?>active<?php } ?>">
+				<a class="nav-link" href="{site_url}reports/reports">
+					<i class="material-icons">pie_chart</i>
+					<p>ยอดขายแพ็กเกจประจำวัน</p>
+				</a>
+			</li>
+			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'reports_month') { ?>active<?php } ?>">
+				<a class="nav-link" href="{site_url}reports_month/reports_month">
+					<i class="material-icons">pie_chart</i>
+					<p>ยอดขายแพ็กเกจประจำเดือน</p>
+				</a>
+			</li>
+			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'reports_seller') { ?>active<?php } ?>">
+				<a class="nav-link" href="{site_url}reports_seller/reports_seller">
+					<i class="material-icons">pie_chart</i>
+					<p>แพ็กเกจขายดี 3 อันดับ</p>
+				</a>
+			</li>
+			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'reports_not_seller') { ?>active<?php } ?>">
+				<a class="nav-link" href="{site_url}reports_not_seller/reports_not_seller">
+					<i class="material-icons">pie_chart</i>
+					<p>แพ็กเกจขายไม่ดี 3 อันดับ</p>
+				</a>
+			</li>
 			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'settings_admin') { ?>active<?php } ?>">
 				<a class="nav-link" href="{site_url}settings_admin/settings_admin/edit/<?php echo $this->session->userdata('encrypt_user_id'); ?>">
 					<i class="material-icons">settings</i>
