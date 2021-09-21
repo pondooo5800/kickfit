@@ -6,7 +6,7 @@
 					<div class="card-icon">
 						<i class="material-icons">library_books</i>
 					</div>
-					<h4 class="card-title">ข้อมูลเทรนเนอร์</h4>
+					<h4 class="card-title">การเข้าใช้บริการ</h4>
 				</div>
 				<div class="card-body">
 					<form class="form-horizontal" name="formSearch" method="post" action="{page_url}/search">
@@ -22,11 +22,11 @@
 									<div class="col-md-2">
 										<div class="form-group has-warning bmd-form-group" id="search">
 											<select class="select2-search" name="search_field" class="span2">
-												<option value="fname">ชื่อ</option>
+												<option value="fullname">ชื่อ</option>
 											</select>
 										</div>
 									</div>
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<div class="form-group has-info bmd-form-group">
 											<input type="text" class="form-control col" id="txtSearch" name="txtSearch" value="{txt_search}">
 										</div>
@@ -39,22 +39,22 @@
 											</button>
 										</div>
 									</div>
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<div class="form-group bmd-form-group">
 											<select class="select2-search" id="set_order_by" class="span2" value="{order_by}">
 												<option value="">- จัดเรียงตาม -</option>
-												<option value="fname|asc">ชื่อ ก - ฮ</option>
-												<option value="fname|desc">ชื่อ ฮ - ก</option>
+												<option value="fullname|asc">ชื่อ ก - ฮ</option>
+												<option value="fullname|desc">ชื่อ ฮ - ก</option>
 											</select>
 										</div>
 									</div>
-									<div class="col-md-2">
+									<!-- <div class="col-md-2">
 										<div class="form-group bmd-form-group">
 											<a href="{page_url}/add" class="btn btn-success" data-toggle="tooltip" title="เพิ่มข้อมูลใหม่" id="btn-search">
 												<i class="fa fa-plus-square"></i></span>&nbsp;&nbsp;เพิ่มรายการ
 											</a>
 										</div>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
@@ -66,12 +66,10 @@
 								<tr>
 									<th class="text-center">#</th>
 									<th class="text-center">ชื่อ สกุล</th>
-									<th class="text-center">วันเดือนปีเกิด</th>
-									<th class="text-center">อายุ</th>
-									<th class="text-center">ที่อยู่</th>
-									<th class="text-center">อีเมล</th>
-									<th class="text-center">เบอร์โทรศัพท์</th>
-									<th class="text-center">username</th>
+									<th class="text-center">แพ็กเกจ</th>
+									<th class="text-center">วันที่</th>
+									<th class="text-center">รอบ</th>
+									<th class="text-center">จำนวนเข้าใช้ (ครั้ง)</th>
 									<th class="text-center" style="width:200px">เครื่องมือ</th>
 								</tr>
 							</thead>
@@ -79,17 +77,15 @@
 								<tr parser-repeat="[data_list]" id="row_{record_number}">
 									<td style="text-align:center;">{record_number}</td>
 									<td style="text-align:center;">{record_fullname}</td>
-									<td style="text-align:left;">{date_of_birth}</td>
-									<td style="text-align:left;">{record_age}</td>
-									<td style="text-align:left;">{record_addr}</td>
-									<td style="text-align:left;">{record_email_addr}</td>
-									<td style="text-align:left;">{record_tel}</td>
-									<td style="text-align:left;">{record_username}</td>
+									<td style="text-align:left;">{record_promotion_name}</td>
+									<td style="text-align:center;">{record_ser_date}</td>
+									<td style="text-align:center;">{record_ser_time}</td>
+									<td style="text-align:center;">{record_service_count}</td>
 									<td class="td-actions text-center">
-										<a href="{page_url}/preview/{url_encrypt_id}" class="my-tooltip btn btn-info btn-md" data-toggle="tooltip" title="แสดงข้อมูลรายละเอียด">
+										<!-- <a href="{page_url}/preview/{url_encrypt_id}" class="my-tooltip btn btn-info btn-md" data-toggle="tooltip" title="แสดงข้อมูลรายละเอียด">
 											<i class="material-icons">list</i>
-										</a>
-										<a href="{page_url}/edit/{url_encrypt_id}" class="my-tooltip btn btn-warning " data-toggle="tooltip" title="แก้ไขข้อมูล">
+										</a> -->
+										<a href="{page_url}/edit/{url_encrypt_id}" class="my-tooltip btn btn-info " data-toggle="tooltip" title="บันทึการเข้าใช้">
 											<i class="material-icons">edit</i>
 										</a>
 										<a href="javascript:void(0);" class="btn-delete-row my-tooltip btn btn-danger" data-toggle="tooltip" title="ลบรายการนี้" data-service_id="{encrypt_service_id}" data-row-number="{record_number}">

@@ -348,7 +348,7 @@ class Services extends CRUD_Controller
 	public function update()
 	{
 		$message = '';
-		$message .= $this->formValidateUpdate();
+		// $message .= $this->formValidateUpdate();
 		$post = $this->input->post(NULL, TRUE);
 		// die(print_r($post));
 		$error_pk_id = $this->checkRecordKey($post);
@@ -421,6 +421,10 @@ class Services extends CRUD_Controller
 	private function setDataListFormat($lists_data, $start_row = 0)
 	{
 		$data = $lists_data;
+		// echo '<pre>';
+		// print_r($data);
+		// echo '</pre>';
+		// die();
 		$count = count($lists_data);
 		for ($i = 0; $i < $count; $i++) {
 			$start_row++;
@@ -433,13 +437,11 @@ class Services extends CRUD_Controller
 			}
 			$data[$i]['encrypt_service_id'] = $pk1;
 			$data[$i]['record_service_id'] = $data[$i]['service_id'];
-			$data[$i]['record_fullname'] = $data[$i]['fname'] .' '. $data[$i]['lname'];
-			$data[$i]['record_username'] = $data[$i]['username'];
-			$data[$i]['record_age'] = $data[$i]['age'];
-			$data[$i]['record_addr'] = $data[$i]['addr'];
-			$data[$i]['record_email_addr'] = $data[$i]['email_addr'];
-			$data[$i]['date_of_birth'] = setThaiDate($data[$i]['date_of_birth']);
-			$data[$i]['record_tel'] = $data[$i]['tel'];
+			$data[$i]['record_fullname'] = $data[$i]['member_fname'] .' '. $data[$i]['member_lname'];
+			$data[$i]['record_promotion_name'] = $data[$i]['promotion_name'];
+			$data[$i]['record_service_count'] = $data[$i]['service_count'];
+			$data[$i]['record_ser_date'] = ($data[$i]['ser_date'] == 0000-00-00) ? '' : setThaiDate($data[$i]['ser_date']);
+			$data[$i]['record_ser_time'] = $data[$i]['ser_time'];
 			$data[$i]['datetime_add'] = setThaiDate($data[$i]['datetime_add']);
 			$data[$i]['datetime_update'] = setThaiDate($data[$i]['datetime_update']);
 			$data[$i]['datetime_delete'] = setThaiDate($data[$i]['datetime_delete']);
@@ -494,15 +496,11 @@ class Services extends CRUD_Controller
 		}
 		$this->data['encrypt_service_id'] = $pk1;
 		$this->data['record_service_id'] = $data['service_id'];
-		$this->data['record_password'] = $data['password'];
-		$this->data['record_username'] =  $data['username'];
-		$this->data['record_fname'] =$data['fname'];
-		$this->data['record_lname'] =$data['lname'];
-		$this->data['record_email_addr'] = $data['email_addr'];
-		$this->data['record_tel'] = $data['tel'];
-		$this->data['record_addr'] = $data['addr'];
-		$this->data['record_age'] = $data['age'];
-		$this->data['record_date_of_birth'] = setThaiDate($data['date_of_birth']);
+		$this->data['record_fullname'] = $data['fullname'];
+		$this->data['record_service_count'] = $data['service_count'];
+		$this->data['record_ser_date'] = ($data['ser_date'] == 0000-00-00) ? '' : setThaiDate($data['ser_date']);
+		$this->data['record_ser_time'] = $data['ser_time'];
+
 		$this->data['record_user_add'] = $data['user_add'];
 		$this->data['record_user_update'] = $data['user_update'];
 		$this->data['record_user_delete'] = $data['user_delete'];

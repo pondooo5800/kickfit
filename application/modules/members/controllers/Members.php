@@ -290,7 +290,7 @@ class Members extends CRUD_Controller
 
 			$id = $this->Members->create($post);
 			if ($id != '') {
-				$this->Services->create($post);
+				$this->Services->create($post,$id);
 				$success = TRUE;
 				$encrypt_id = encrypt($id);
 				$message = '<strong>บันทึกข้อมูลเรียบร้อย</strong>';

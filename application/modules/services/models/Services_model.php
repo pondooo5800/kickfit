@@ -39,25 +39,17 @@ class Services_model extends MY_Model
 	}
 
 
-	public function create($post)
+	public function create($post,$id)
 	{
 		$data = array(
-			'member_id' => $post['member_id'],
-			'member_fname' => $post['member_fname'],
-			'member_lname' => $post['member_lname'],
-			'member_addr' => $post['member_addr'],
-			'member_email_addr' => $post['member_email_addr'],
-			'member_age' => $post['member_age'],
-			'member_mobile_no' => $post['member_mobile_no'],
-			'member_employment' => $post['member_employment'],
-			'member_type' => $post['member_type'],
+			'member_id' => $id,
+			'fullname' => $post['member_fname'] .' '.$post['member_lname'],
 			'member_pro' => $post['member_pro'],
-			'date_of_birth' => setDateToStandard($post['date_of_birth']),
+			'service_count' => '1',
+			'ser_date' => '',
+			'ser_time' => '',
 			'fag_allow' => 'allow',
 		);
-		// if (condition) {
-		// 	# code...
-		// }
 		return $this->add_record($data);
 	}
 
@@ -84,7 +76,7 @@ class Services_model extends MY_Model
 		if ($search_field != '' && $value != '') {
 			$search_method_field = "$this->my_table.$search_field";
 			$search_method_value = '';
-			if ($search_field == 'fname') {
+			if ($search_field == 'fullname') {
 				$search_method_value = "LIKE '%$value%'";
 			}
 			$where	.= ($where != '' ? ' AND ' : '') . " $search_method_field $search_method_value ";
@@ -105,7 +97,9 @@ class Services_model extends MY_Model
 		$this->set_order_by($order_by);
 		$this->set_offset($offset);
 		$this->set_limit($limit);
-		$this->db->select("$this->my_table.*");
+		$this->db->select("$this->my_table.*,tb_members.member_fname,tb_members.member_lname,tb_promotions.promotion_name");
+		$this->db->join('tb_members', "$this->my_table.member_id = tb_members.member_id", 'left');
+		$this->db->join('tb_promotions', "$this->my_table.member_pro = tb_promotions.promotion_id", 'left');
 
 		$list_record = $this->list_record();
 		// print_r($this->db->last_query());
@@ -122,17 +116,9 @@ class Services_model extends MY_Model
 	public function update($post)
 	{
 		$data = array(
-			'username' => $post['username'],
-			'password' => $post['password'],
-			'fname' => $post['fname'],
-			'lname' => $post['lname'],
-			'fullname' => $post['fname'] .' '.$post['lname'],
-			'addr' => $post['addr'],
-			'email_addr' => $post['email_addr'],
-			'age' => $post['age'],
-			'tel' => $post['tel'],
-			'user_level' => 'trainer',
-			'date_of_birth' => setDateToStandard($post['date_of_birth']),
+			'ser_date' => setDateToStandard($post['ser_date']),
+			'ser_time' => $post['ser_time'],
+			'service_count' => $post['service_count'] + 1,
 			'fag_allow' => 'allow',
 		);
 

@@ -134,7 +134,7 @@ var Services = {
 
 
 	confirmDelete: function (pProductId,  irow){
-		$('[name="encrypt_user_id"]').val(pProductId);
+		$('[name="encrypt_service_id"]').val(pProductId);
 
 		$('#xrow').text('['+ irow +']');
 		var my_thead = $('#row_' + irow).closest('table').find('th:not(:first-child):not(:last-child)');
@@ -221,7 +221,7 @@ $(document).ready(function() {
 		$('.btn-delete-row').removeClass('active_del');
 		$(this).addClass('active_del');
 		var row_num = $(this).attr('data-row-number');
-		var pProductId = $(this).attr('data-user_id');
+		var pProductId = $(this).attr('data-service_id');
 
 		Services.confirmDelete(pProductId,  row_num);
 	});//click
@@ -233,6 +233,7 @@ $(document).ready(function() {
 	setDropdownList('#user_add');
 	setDropdownList('#user_update');
 	setDropdownList('#fag_allow');
+	setDropdownList('#ser_time');
 	setDatePicker('.datepicker');
 
 	//Set default value

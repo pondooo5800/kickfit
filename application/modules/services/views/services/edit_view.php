@@ -11,7 +11,7 @@
 					<div class="card-icon">
 						<i class="material-icons">edit</i>
 					</div>
-					<h4 class="card-title">แก้ไขข้อมูลเทรนเนอร์</h4>
+					<h4 class="card-title">การเข้าใช้บริการ</h4>
 				</div>
 				<div class="card-body">
 					<form class='form-horizontal' id='formEdit' accept-charset='utf-8'>
@@ -21,74 +21,22 @@
 						<div class="container">
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="fname">ชื่อ :</label>
+									<label class="control-label" for="ser_date">วันที่เข้าใช้บริการ :</label>
 									<div class="form-group has-success">
-										<input type="text" class="form-control" id="fname" name="fname" value="{record_fname}" />
+										<input type="text" class="form-control datepicker" id="ser_date" name="ser_date" value="" />
 									</div>
 								</div>
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="lname">นามสกุล :</label>
-									<div class="form-group has-success">
-										<input type="text" class="form-control " id="lname" name="lname" value="{record_lname}" />
-									</div>
+								<label class="control-label" for="ser_time">รอบ :</label>
+									<select id="ser_time" name="ser_time" value="">
+										<option value="">- เลือกรอบ -</option>
+										<option value="13:00 - 14:30">13:00 - 14:30</option>
+										<option value="14:30 - 16:00">14:30 - 16:00</option>
+										<option value="17:00 - 18:30">17:00 - 18:30</option>
+										<option value="18:30 - 20:00">18:30 - 20:00</option>
+									</select>
 								</div>
 							</div>
-
-							<div class="form-row justify-content-around">
-								<div class="form-group col-md-4 ">
-									<label class="control-label" for="date_of_birth">วันเกิด :</label>
-									<div class="form-group has-success">
-										<input type="text" class="form-control datepicker" id="date_of_birth" name="date_of_birth" value="{record_date_of_birth}" />
-									</div>
-								</div>
-								<div class="form-group col-md-4 ">
-									<label class="control-label" for="age">อายุ :</label>
-									<div class="form-group has-success">
-										<input type="text" class="form-control" id="age" name="age" value="{record_age}" maxlength="3" OnKeyPress="return chkNumber(this)"/>
-									</div>
-								</div>
-							</div>
-							<div class="form-row justify-content-around">
-								<div class="form-group col-md-4 ">
-									<label class="control-label" for="tel">เบอร์โทรศัพท์ :</label>
-									<div class="form-group has-success">
-										<input type="text" class="form-control" id="tel" name="tel" value="{record_tel}" />
-									</div>
-								</div>
-
-								<div class="form-group col-md-4 ">
-									<label class="control-label" for="email_addr">อีเมล :</label>
-									<div class="form-group has-success">
-										<input type="text" class="form-control" id="email_addr" name="email_addr" value="{record_email_addr}" />
-									</div>
-								</div>
-							</div>
-							<div class="form-row justify-content-around">
-								<div class="form-group col-md-4 ">
-									<label class="control-label" for="addr">ที่อยู่ :</label>
-									<div class="form-group has-success">
-										<textarea class="form-control" id="addr" name="addr" rows="3">{record_addr}</textarea>
-									</div>
-								</div>
-								<div class="form-group col-md-4 ">
-								</div>
-							</div>
-							<div class="form-row justify-content-around">
-							<div class="form-group col-md-4 ">
-									<label class="control-label" for="username">Username :</label>
-									<div class="form-group has-success">
-									<input type="text" class="form-control" id="username" name="username" value="{record_username}" readonly />
-									</div>
-								</div>
-							<div class="form-group col-md-4 ">
-									<label class="control-label" for="password">Password :</label>
-									<div class="form-group has-success">
-										<input type="password" class="form-control" id="password" name="password" value="{record_password}" />
-									</div>
-								</div>
-
-							</div>
-
 						</div>
 						<br>
 
@@ -103,7 +51,8 @@
 								</button>
 							</div>
 						</div>
-						<input type="hidden" name="encrypt_user_id" value="{encrypt_user_id}" />
+						<input type="hidden" name="encrypt_service_id" value="{encrypt_service_id}" />
+						<input type="hidden" name="service_count" value="{record_service_count}" />
 
 
 					</form>
