@@ -53,10 +53,10 @@
 								</div>
 							</div>
 							<div class="form-row justify-content-around">
-								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_age">อายุ :</label>
+							<div class="form-group col-md-4 ">
+									<label class="control-label" for="member_email_addr">อีเมล :</label>
 									<div class="form-group has-success">
-										<input type="text" class="form-control" id="member_age" name="member_age" value="" maxlength="3" OnKeyPress="return chkNumber(this)" />
+										<input type="text" class="form-control" id="member_email_addr" name="member_email_addr" value="" />
 									</div>
 								</div>
 								<div class="form-group col-md-4 ">
@@ -68,25 +68,20 @@
 							</div>
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_email_addr">อีเมล :</label>
-									<div class="form-group has-success">
-										<input type="text" class="form-control" id="member_email_addr" name="member_email_addr" value="" />
-									</div>
-								</div>
-								<div class="form-group col-md-4 ">
 									<label class="control-label" for="member_employment">อาชีพ :</label>
 									<div class="form-group has-success">
 										<input type="text" class="form-control" id="member_employment" name="member_employment" value="" />
 									</div>
 								</div>
-							</div>
-							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
 									<label class="control-label" for="member_addr">ที่อยู่ :</label>
 									<div class="form-group has-success">
 										<textarea class="form-control" id="member_addr" name="member_addr" rows="3"></textarea>
 									</div>
 								</div>
+
+							</div>
+							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4">
 									<label class="control-label" for="member_type">ประเภท :</label>
 									<select id="member_type" name="member_type" value="">
@@ -95,8 +90,6 @@
 										<option value="en">คนต่างชาติ</option>
 									</select>
 								</div>
-							</div>
-							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4">
 									<label class="control-label" for="member_pro">แพ็กเกจ :</label>
 									<select id="member_pro" name="member_pro" value="">
@@ -104,8 +97,7 @@
 										{member_pro_option_list}
 									</select>
 								</div>
-								<div class="form-group col-md-4">
-								</div>
+
 							</div>
 						</div>
 						<br>

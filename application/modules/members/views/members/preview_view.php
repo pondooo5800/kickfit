@@ -40,10 +40,6 @@
 									<td>{record_date_of_birth}</td>
 								</tr>
 								<tr>
-									<td class="text-right fit"><b>อายุ :</b></td>
-									<td>{record_member_age}</td>
-								</tr>
-								<tr>
 									<td class="text-right fit"><b>ที่อยู่ :</b></td>
 									<td>{record_member_addr}</td>
 								</tr>

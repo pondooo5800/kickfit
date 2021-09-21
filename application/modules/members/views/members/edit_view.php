@@ -52,36 +52,26 @@
 									</div>
 								</div>
 								<div class="form-group col-md-4 ">
-									<label class="control-label" for="member_age">อายุ :</label>
-									<div class="form-group has-success">
-										<input type="text" class="form-control" id="member_age" name="member_age" value="{record_member_age}" maxlength="3" OnKeyPress="return chkNumber(this)"/>
-									</div>
-								</div>
-							</div>
-							<div class="form-row justify-content-around">
-								<div class="form-group col-md-4 ">
 									<label class="control-label" for="member_mobile_no">เบอร์โทรศัพท์ :</label>
 									<div class="form-group has-success">
 										<input type="text" class="form-control" id="member_mobile_no" name="member_mobile_no" value="{record_member_mobile_no}" />
 									</div>
 								</div>
-
+							</div>
+							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
 									<label class="control-label" for="member_email_addr">อีเมล :</label>
 									<div class="form-group has-success">
 										<input type="text" class="form-control" id="member_email_addr" name="member_email_addr" value="{record_member_email_addr}" />
 									</div>
 								</div>
-							</div>
-							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">
 									<label class="control-label" for="member_addr">ที่อยู่ :</label>
 									<div class="form-group has-success">
 										<textarea class="form-control" id="member_addr" name="member_addr" rows="3">{record_member_addr}</textarea>
 									</div>
 								</div>
-								<div class="form-group col-md-4 ">
-								</div>
+
 							</div>
 							<div class="form-row justify-content-around">
 								<div class="form-group col-md-4 ">

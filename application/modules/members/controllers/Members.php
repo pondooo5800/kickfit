@@ -586,7 +586,6 @@ class Members extends CRUD_Controller
 		$this->data['record_member_mobile_no'] = $data['member_mobile_no'];
 		$this->data['record_member_addr'] = $data['member_addr'];
 		$this->data['record_member_employment'] = $data['member_employment'];
-		$this->data['record_member_age'] = $data['member_age'];
 		$this->data['preview_member_type'] = $this->setStatusSubject($data['member_type']);
 		$this->data['record_member_type'] = $data['member_type'];
 		$rows = rowArray($this->common_model->custom_query("select promotion_name FROM tb_promotions WHERE tb_promotions.fag_allow != 'delete' and tb_promotions.promotion_id =" .$data['member_pro']));
