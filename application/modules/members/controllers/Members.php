@@ -15,7 +15,10 @@ class Members extends CRUD_Controller
 	public function __construct()
 	{
 		parent::__construct();
-
+		// echo('<pre>');
+		// print_r($this->session->userdata());
+		// echo('</pre>');
+		// die();
 		chkUserPerm();
 
 		$this->per_page = 30;
@@ -515,6 +518,7 @@ class Members extends CRUD_Controller
 			}
 			$data[$i]['encrypt_member_id'] = $pk1;
 			$data[$i]['record_member_user_id'] = $data[$i]['member_user_id'];
+			$data[$i]['record_member_id'] = $data[$i]['member_id'];
 			$data[$i]['record_fullname'] = $data[$i]['member_fname'] .' '. $data[$i]['member_lname'];
 			$data[$i]['record_member_addr'] = $data[$i]['member_addr'];
 			$data[$i]['record_member_email_addr'] = $data[$i]['member_email_addr'];

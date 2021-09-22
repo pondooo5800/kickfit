@@ -75,6 +75,7 @@ class User_login_model extends CI_Model
 					'user_id' => $row->user_id,
 					'username' => $row->username,
 					'fullname' => $row->fullname,
+					'user_level' => $row->user_level,
 					'login_validated' => TRUE,
 					'encrypt_user_id'=>encrypt($row->user_id),
 					);

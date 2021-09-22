@@ -6,7 +6,8 @@
 	</div>
 	<div class="sidebar-wrapper">
 		<ul class="nav">
-			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'members') { ?>active<?php } ?>">
+			<?php if ($this->session->userdata('user_level') == 'admin') { ?>
+				<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'members') { ?>active<?php } ?>">
 				<a class="nav-link" href="{site_url}members/members">
 					<i class="material-icons">person</i>
 					<p>ข้อมูลลูกค้า</p>
@@ -54,6 +55,38 @@
 					<p>แพ็กเกจขายไม่ดี 3 อันดับ</p>
 				</a>
 			</li>
+
+			<?php
+			}
+			?>
+			<?php if ($this->session->userdata('user_level') == 'trainer') { ?>
+				<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'members') { ?>active<?php } ?>">
+				<a class="nav-link" href="{site_url}members/members">
+					<i class="material-icons">person</i>
+					<p>ข้อมูลลูกค้า</p>
+				</a>
+			</li>
+			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'promotions') { ?>active<?php } ?>">
+				<a class="nav-link" href="{site_url}promotions/promotions">
+					<i class="material-icons">event</i>
+					<p>ข้อมูลแพ็กเกจ</p>
+				</a>
+			</li>
+			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'trainers') { ?>active<?php } ?>">
+				<a class="nav-link" href="{site_url}trainers/trainers">
+					<i class="material-icons">person</i>
+					<p>ข้อมูลเทรนเนอร์</p>
+				</a>
+			</li>
+			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'services') { ?>active<?php } ?>">
+				<a class="nav-link" href="{site_url}services/services">
+					<i class="material-icons">library_books</i>
+					<p>การเข้าใช้บริการ</p>
+				</a>
+			</li>
+			<?php
+			}
+			?>
 			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'settings_admin') { ?>active<?php } ?>">
 				<a class="nav-link" href="{site_url}settings_admin/settings_admin/edit/<?php echo $this->session->userdata('encrypt_user_id'); ?>">
 					<i class="material-icons">settings</i>
@@ -67,5 +100,7 @@
 				</a>
 			</li>
 		</ul>
+		<br>
+		<br><br>
 	</div>
 </div>

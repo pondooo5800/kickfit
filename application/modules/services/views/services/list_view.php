@@ -26,7 +26,7 @@
 											</select>
 										</div>
 									</div>
-									<div class="col-md-3">
+									<div <?php echo ($this->session->userdata('user_level') == 'trainer') ? 'class="col-md-3"' : 'class="col-md-3"' ; ?> >
 										<div class="form-group has-info bmd-form-group">
 											<input type="text" class="form-control col" id="txtSearch" name="txtSearch" value="{txt_search}">
 										</div>
@@ -39,7 +39,7 @@
 											</button>
 										</div>
 									</div>
-									<div class="col-md-3">
+									<div <?php echo ($this->session->userdata('user_level') == 'trainer') ? 'class="col-md-3"' : 'class="col-md-3"' ; ?> >
 										<div class="form-group bmd-form-group">
 											<select class="select2-search" id="set_order_by" class="span2" value="{order_by}">
 												<option value="">- จัดเรียงตาม -</option>
@@ -70,7 +70,7 @@
 									<th class="text-center">วันที่</th>
 									<th class="text-center">รอบ</th>
 									<th class="text-center">จำนวนเข้าใช้ (ครั้ง)</th>
-									<th class="text-center" style="width:200px">เครื่องมือ</th>
+									<th class="text-center" <?php echo ($this->session->userdata('user_level') == 'trainer') ? 'style="display: none;"' : 'style="width:200px"' ; ?> >เครื่องมือ</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -81,7 +81,8 @@
 									<td style="text-align:center;">{record_ser_date}</td>
 									<td style="text-align:center;">{record_ser_time}</td>
 									<td style="text-align:center;">{record_service_count}</td>
-									<td class="td-actions text-center">
+									<?php if ($this->session->userdata('user_level') == 'admin') { ?>
+										<td class="td-actions text-center">
 										<!-- <a href="{page_url}/preview/{url_encrypt_id}" class="my-tooltip btn btn-info btn-md" data-toggle="tooltip" title="แสดงข้อมูลรายละเอียด">
 											<i class="material-icons">list</i>
 										</a> -->
@@ -92,6 +93,10 @@
 											<i class="material-icons">delete_forever</i>
 										</a>
 									</td>
+									<?php
+			}
+			?>
+
 								</tr>
 							</tbody>
 						</table>
