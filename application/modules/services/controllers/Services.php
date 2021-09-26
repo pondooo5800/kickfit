@@ -439,7 +439,8 @@ class Services extends CRUD_Controller
 			$data[$i]['record_service_id'] = $data[$i]['service_id'];
 			$data[$i]['record_fullname'] = $data[$i]['member_fname'] .' '. $data[$i]['member_lname'];
 			$data[$i]['record_promotion_name'] = $data[$i]['promotion_name'];
-			$data[$i]['record_service_count'] = $data[$i]['service_count'];
+			$data[$i]['record_service_count'] = ($data[$i]['service_count'] == $data[$i]['promotion_value']) ? 'ครบจำนวนครั้งแล้ว' : $data[$i]['service_count'];
+			$data[$i]['record_service_count_dis'] = ($data[$i]['service_count'] == $data[$i]['promotion_value']) ? 'my-tooltip btn btn-info disabled' : 'my-tooltip btn btn-info';
 			$data[$i]['record_ser_date'] = ($data[$i]['ser_date'] == 0000-00-00) ? '' : setThaiDate($data[$i]['ser_date']);
 			$data[$i]['record_ser_time'] = $data[$i]['ser_time'];
 			$data[$i]['datetime_add'] = setThaiDate($data[$i]['datetime_add']);

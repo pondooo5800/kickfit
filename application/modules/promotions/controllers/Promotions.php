@@ -625,7 +625,8 @@ class Promotions extends CRUD_Controller
 		$this->data['record_promotion_type'] = $data['promotion_type'];
 		$this->data['promotion_discount'] = $data['promotion_discount'];
 		$this->data['promotion_type'] = $data['promotion_type'];
-		$this->data['record_promotion_price'] = number_format($data['promotion_price'], 2);
+		$this->data['record_promotion_price'] =$data['promotion_price'];
+		// $this->data['record_promotion_price'] = number_format($data['promotion_price'], 2);
 
 		$this->data['date_of_promotion_start'] = setThaiDate($data['date_of_promotion_start']);
 		$this->data['date_of_promotion_end'] = setThaiDate($data['date_of_promotion_end']);

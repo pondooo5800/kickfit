@@ -36,18 +36,25 @@ class Promotions_model extends MY_Model
 	{
 		$this->set_where("$this->my_table.promotion_id = $id");
 		return $this->load_record();
-
 	}
 
 
 	public function create($post)
 	{
+		if ($post['promotion_type'] == "รายเดือน (30 วัน)") {
+			$value_pro_type = 30;
+		} elseif ($post['promotion_type'] == "รายครั้ง (15 ครั้ง)") {
+			$value_pro_type = 15;
+		} elseif ($post['promotion_type'] == "รายครั้ง (10 ครั้ง)") {
+			$value_pro_type = 10;
+		}
 		$data = array(
 			'promotion_name' => $post['promotion_name'],
 			'promotion_type' => $post['promotion_type'],
 			'promotion_detail' => $post['promotion_detail'],
 			'promotion_discount' => $post['promotion_discount'],
 			'promotion_price' => $post['promotion_price'],
+			'promotion_value' => $value_pro_type,
 			'date_of_promotion_start' => setDateToStandard($post['date_of_promotion_start']),
 			'date_of_promotion_end' => setDateToStandard($post['date_of_promotion_end']),
 			'fag_allow' => 'allow',
@@ -133,12 +140,21 @@ class Promotions_model extends MY_Model
 
 	public function update($post)
 	{
+		if ($post['promotion_type'] == "รายเดือน (30 วัน)") {
+			$value_pro_type = 30;
+		} elseif ($post['promotion_type'] == "รายครั้ง (15 ครั้ง)") {
+			$value_pro_type = 15;
+		} elseif ($post['promotion_type'] == "รายครั้ง (10 ครั้ง)") {
+			$value_pro_type = 10;
+		}
+
 		$data = array(
 			'promotion_name' => $post['promotion_name'],
 			'promotion_type' => $post['promotion_type'],
 			'promotion_detail' => $post['promotion_detail'],
 			'promotion_discount' => $post['promotion_discount'],
 			'promotion_price' => $post['promotion_price'],
+			'promotion_value' => $value_pro_type,
 			'date_of_promotion_start' => setDateToStandard($post['date_of_promotion_start']),
 			'date_of_promotion_end' => setDateToStandard($post['date_of_promotion_end']),
 			'fag_allow' => 'allow',

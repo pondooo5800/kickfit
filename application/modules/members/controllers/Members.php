@@ -280,6 +280,14 @@ class Members extends CRUD_Controller
 	{
 		$message = '';
 		$message .= $this->formValidate();
+		$post = $this->input->post(NULL, TRUE);
+		$id = $post['member_user_id'];
+		$check_id =$this->Members->check_id($id);
+			if($check_id > 0)
+			{
+				$message = 'เลขบัตรประชาชนนี้มีในระบบแล้ว';
+			}
+
 		if ($message != '') {
 			$json = json_encode(array(
 				'is_successful' => FALSE,
@@ -288,7 +296,6 @@ class Members extends CRUD_Controller
 			echo $json;
 		} else {
 
-			$post = $this->input->post(NULL, TRUE);
 			$encrypt_id = '';
 
 			$id = $this->Members->create($post);
@@ -494,7 +501,6 @@ class Members extends CRUD_Controller
 	//   echo '</pre>';
 
 	//   die();
-
 	  $mpdf->WriteHTML($html);
 	  $file_name = 'ใบเสร็จ.pdf';
 	  $mpdf->Output($file_name, 'I');

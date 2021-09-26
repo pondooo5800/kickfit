@@ -64,7 +64,7 @@
 									<select id="promotion_type" name="promotion_type" value="">
 										<option value="">- เลือก ประเภท -</option>
 										<option value="รายเดือน (30 วัน)">รายเดือน (30 วัน)</option>
-										<option value="รายครั้ง (15 ครั้ง">รายครั้ง (15 ครั้ง)</option>
+										<option value="รายครั้ง (15 ครั้ง)">รายครั้ง (15 ครั้ง)</option>
 										<option value="รายครั้ง (10 ครั้ง)">รายครั้ง (10 ครั้ง)</option>
 									</select>
 								</div>

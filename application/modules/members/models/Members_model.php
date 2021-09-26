@@ -37,7 +37,13 @@ class Members_model extends MY_Model
 		$this->set_where("$this->my_table.member_id = $id");
 		return $this->load_record();
 	}
-
+	public function check_id($id)
+	{
+		$this->db->select('member_user_id');
+		$this->db->where('member_user_id',$id);
+		$query = $this->db->get('tb_members');
+		return $query->num_rows();
+	}
 
 	public function create($post)
 	{

@@ -6,7 +6,7 @@
 					<div class="card-icon">
 						<i class="material-icons">library_books</i>
 					</div>
-					<h4 class="card-title">ยอดขายแพ็กเกจประจำวัน</h4>
+					<h4 class="card-title">แพ็กเกจยอดนิยมประจำวัน</h4>
 				</div>
 				<div class="card-body">
 					<form class="form-horizontal" name="formSearch" method="post" action="{page_url}/search">

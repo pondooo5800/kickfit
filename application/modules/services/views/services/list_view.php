@@ -86,7 +86,7 @@
 										<!-- <a href="{page_url}/preview/{url_encrypt_id}" class="my-tooltip btn btn-info btn-md" data-toggle="tooltip" title="แสดงข้อมูลรายละเอียด">
 											<i class="material-icons">list</i>
 										</a> -->
-										<a href="{page_url}/edit/{url_encrypt_id}" class="my-tooltip btn btn-info " data-toggle="tooltip" title="บันทึการเข้าใช้">
+										<a href="{page_url}/edit/{url_encrypt_id}" class="{record_service_count_dis}" data-toggle="tooltip" title="บันทึการเข้าใช้">
 											<i class="material-icons">edit</i>
 										</a>
 										<a href="javascript:void(0);" class="btn-delete-row my-tooltip btn btn-danger" data-toggle="tooltip" title="ลบรายการนี้" data-service_id="{encrypt_service_id}" data-row-number="{record_number}">

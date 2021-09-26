@@ -97,7 +97,7 @@ class Services_model extends MY_Model
 		$this->set_order_by($order_by);
 		$this->set_offset($offset);
 		$this->set_limit($limit);
-		$this->db->select("$this->my_table.*,tb_members.member_fname,tb_members.member_lname,tb_promotions.promotion_name");
+		$this->db->select("$this->my_table.*,tb_members.member_fname,tb_members.member_lname,tb_promotions.promotion_name,tb_promotions.promotion_value");
 		$this->db->join('tb_members', "$this->my_table.member_id = tb_members.member_id", 'left');
 		$this->db->join('tb_promotions', "$this->my_table.member_pro = tb_promotions.promotion_id", 'left');
 

@@ -34,13 +34,13 @@
 			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'reports') { ?>active<?php } ?>">
 				<a class="nav-link" href="{site_url}reports/reports">
 					<i class="material-icons">pie_chart</i>
-					<p>ยอดขายแพ็กเกจประจำวัน</p>
+					<p>แพ็กเกจยอดนิยมประจำวัน</p>
 				</a>
 			</li>
 			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'reports_month') { ?>active<?php } ?>">
 				<a class="nav-link" href="{site_url}reports_month/reports_month">
 					<i class="material-icons">pie_chart</i>
-					<p>ยอดขายแพ็กเกจประจำเดือน</p>
+					<p>แพ็กเกจยอดนิยมประจำเดือน</p>
 				</a>
 			</li>
 			<li class="nav-item <?php if ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'reports_seller') { ?>active<?php } ?>">
